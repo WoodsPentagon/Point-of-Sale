@@ -89,80 +89,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChargedPayRecord.cs">
-      <DependentUpon>POSModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Customer.cs">
-      <DependentUpon>POSModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\AdvancedSearchForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\AdvancedSearchForm.Designer.cs">
-      <DependentUpon>AdvancedSearchForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\SellForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\SellForm.Designer.cs">
-      <DependentUpon>SellForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\StockinLog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\StockinLog.Designer.cs">
-      <DependentUpon>StockinLog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="InventoryItem.cs">
-      <DependentUpon>POSModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Item.cs">
-      <DependentUpon>POSModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Login.cs">
-      <DependentUpon>POSModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Main.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Main.Designer.cs">
-      <DependentUpon>Main.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\AddItemForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\AddItemForm.designer.cs">
       <DependentUpon>AddItemForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\AddProductForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\AddProductForm.designer.cs">
-      <DependentUpon>AddProductForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\ChangePass.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ChangePass.designer.cs">
-      <DependentUpon>ChangePass.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\CreateCustomerProfile.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\CreateCustomerProfile.designer.cs">
-      <DependentUpon>CreateCustomerProfile.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\CreateLogin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\CreateLogin.designer.cs">
-      <DependentUpon>CreateLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\EditItemForm.cs">
       <SubType>Form</SubType>
@@ -170,65 +101,19 @@
     <Compile Include="Forms\EditItemForm.designer.cs">
       <DependentUpon>EditItemForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\InventoryItemView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\InventoryItemView.Designer.cs">
-      <DependentUpon>InventoryItemView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\ItemFormBase.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\ItemFormBase.designer.cs">
       <DependentUpon>ItemFormBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\LoginForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\LoginForm.designer.cs">
-      <DependentUpon>LoginForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\MakeSale.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\MakeSale.designer.cs">
-      <DependentUpon>MakeSale.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\SaleDetails.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\SaleDetails.designer.cs">
-      <DependentUpon>SaleDetails.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\StockinForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\StockinForm.designer.cs">
-      <DependentUpon>StockinForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\SupplierForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\SupplierForm.designer.cs">
-      <DependentUpon>SupplierForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\TransactionHistoryForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\TransactionHistoryForm.Designer.cs">
-      <DependentUpon>TransactionHistoryForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\ViewItem.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ViewItem.designer.cs">
-      <DependentUpon>ViewItem.cs</DependentUpon>
-    </Compile>
     <Compile Include="Interfaces\ITab.cs" />
+    <Compile Include="Item.cs">
+      <DependentUpon>POSModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Misc\Enums.cs" />
     <Compile Include="Misc\Helper.cs" />
     <Compile Include="Misc\ImageDatabaseConverter.cs" />
-    <Compile Include="Misc\UserManager.cs" />
     <Compile Include="POSModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -249,23 +134,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sale.cs">
-      <DependentUpon>POSModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SoldItem.cs">
-      <DependentUpon>POSModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="StockinHistory.cs">
-      <DependentUpon>POSModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Supplier.cs">
       <DependentUpon>POSModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\InventoryUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\InventoryUC.Designer.cs">
-      <DependentUpon>InventoryUC.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Keypad.cs">
       <SubType>UserControl</SubType>
@@ -273,71 +143,14 @@
     <Compile Include="UserControls\Keypad.Designer.cs">
       <DependentUpon>Keypad.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ReportUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\ReportUC.designer.cs">
-      <DependentUpon>ReportUC.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AdvancedSearchForm.resx">
-      <DependentUpon>AdvancedSearchForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SellForm.resx">
-      <DependentUpon>SellForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\StockinLog.resx">
-      <DependentUpon>StockinLog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Main.resx">
-      <DependentUpon>Main.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddItemForm.resx">
       <DependentUpon>AddItemForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AddProductForm.resx">
-      <DependentUpon>AddProductForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ChangePass.resx">
-      <DependentUpon>ChangePass.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CreateCustomerProfile.resx">
-      <DependentUpon>CreateCustomerProfile.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CreateLogin.resx">
-      <DependentUpon>CreateLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EditItemForm.resx">
       <DependentUpon>EditItemForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\InventoryItemView.resx">
-      <DependentUpon>InventoryItemView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ItemFormBase.resx">
       <DependentUpon>ItemFormBase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\LoginForm.resx">
-      <DependentUpon>LoginForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MakeSale.resx">
-      <DependentUpon>MakeSale.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SaleDetails.resx">
-      <DependentUpon>SaleDetails.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\StockinForm.resx">
-      <DependentUpon>StockinForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SupplierForm.resx">
-      <DependentUpon>SupplierForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\TransactionHistoryForm.resx">
-      <DependentUpon>TransactionHistoryForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ViewItem.resx">
-      <DependentUpon>ViewItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -349,14 +162,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="UserControls\InventoryUC.resx">
-      <DependentUpon>InventoryUC.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Keypad.resx">
       <DependentUpon>Keypad.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\ReportUC.resx">
-      <DependentUpon>ReportUC.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <EntityDeploy Include="POSModel.edmx">

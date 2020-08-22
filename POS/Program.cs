@@ -17,13 +17,12 @@ namespace POS
            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            var login = new Forms.LoginForm();
-            Application.Run(login);
+            //var login = new Forms.LoginForm();
+            //Application.Run(login);
 
-            if (login.LoginSuccessful)
-            {
-                Application.Run(new Main());
-            }
+            //if (login.LoginSuccessful)          
+                Application.Run(new Forms.AddItemForm());
+            
         }
     }
 }

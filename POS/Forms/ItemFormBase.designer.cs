@@ -46,6 +46,8 @@
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.itemType = new System.Windows.Forms.ComboBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.defaultCost = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.imageHolder.SuspendLayout();
@@ -56,6 +58,8 @@
             this.groupBox6.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.defaultCost)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -198,9 +202,9 @@
             this.groupBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox8.Controls.Add(this.itemDepartment);
-            this.groupBox8.Location = new System.Drawing.Point(480, 104);
+            this.groupBox8.Location = new System.Drawing.Point(480, 150);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(157, 40);
+            this.groupBox8.Size = new System.Drawing.Size(314, 40);
             this.groupBox8.TabIndex = 5;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Item Department";
@@ -216,7 +220,7 @@
             this.itemDepartment.Location = new System.Drawing.Point(6, 13);
             this.itemDepartment.MaxLength = 50;
             this.itemDepartment.Name = "itemDepartment";
-            this.itemDepartment.Size = new System.Drawing.Size(145, 21);
+            this.itemDepartment.Size = new System.Drawing.Size(302, 21);
             this.itemDepartment.TabIndex = 0;
             // 
             // takePhotoBtn
@@ -251,9 +255,9 @@
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.Controls.Add(this.itemType);
-            this.groupBox4.Location = new System.Drawing.Point(643, 104);
+            this.groupBox4.Location = new System.Drawing.Point(480, 104);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(151, 40);
+            this.groupBox4.Size = new System.Drawing.Size(314, 40);
             this.groupBox4.TabIndex = 6;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Item Type";
@@ -269,14 +273,43 @@
             this.itemType.Location = new System.Drawing.Point(6, 13);
             this.itemType.MaxLength = 50;
             this.itemType.Name = "itemType";
-            this.itemType.Size = new System.Drawing.Size(139, 21);
+            this.itemType.Size = new System.Drawing.Size(302, 21);
             this.itemType.TabIndex = 0;
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.defaultCost);
+            this.groupBox7.Location = new System.Drawing.Point(224, 150);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(250, 40);
+            this.groupBox7.TabIndex = 5;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Item Default Cost";
+            // 
+            // defaultCost
+            // 
+            this.defaultCost.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.defaultCost.BackColor = System.Drawing.SystemColors.Control;
+            this.defaultCost.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.defaultCost.DecimalPlaces = 2;
+            this.defaultCost.Location = new System.Drawing.Point(6, 18);
+            this.defaultCost.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.defaultCost.Name = "defaultCost";
+            this.defaultCost.Size = new System.Drawing.Size(238, 16);
+            this.defaultCost.TabIndex = 1;
+            this.defaultCost.ThousandsSeparator = true;
             // 
             // ItemFormBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(803, 484);
+            this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.saveBtn);
             this.Controls.Add(this.takePhotoBtn);
@@ -306,6 +339,8 @@
             this.groupBox6.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
+            this.groupBox7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.defaultCost)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -316,19 +351,21 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Panel imageHolder;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.Button saveBtn;
         protected System.Windows.Forms.TextBox barcode;
         protected System.Windows.Forms.TextBox name;
         protected System.Windows.Forms.TextBox details;
-        protected System.Windows.Forms.ComboBox itemDepartment;
-        protected System.Windows.Forms.NumericUpDown sellingPrice;
         protected System.Windows.Forms.Button takePhotoBtn;
         protected System.Windows.Forms.PictureBox ImageBox;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
-        private System.Windows.Forms.GroupBox groupBox4;
-        protected System.Windows.Forms.ComboBox itemType;
         protected System.Windows.Forms.GroupBox groupBox6;
+        protected System.Windows.Forms.ComboBox itemDepartment;
+        protected System.Windows.Forms.NumericUpDown sellingPrice;
+        protected System.Windows.Forms.ComboBox itemType;
+        protected System.Windows.Forms.NumericUpDown defaultCost;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.GroupBox groupBox4;
     }
 }

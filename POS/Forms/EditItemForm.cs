@@ -12,6 +12,7 @@ namespace POS.Forms
 {
     public partial class EditItemForm : ItemFormBase
     {
+        Item target;
         public EditItemForm()
         {
             InitializeComponent();
@@ -23,22 +24,25 @@ namespace POS.Forms
         public override void Init()
         {
             base.Init();
-            itemType.Enabled = false;
 
-            Item item;
-            using(var p = new POSEntities())
-            {
-                item = p.Items.FirstOrDefault(x => x.Barcode == barcode.Text);
-                ImageBox.Image = POS.Misc.ImageDatabaseConverter.byteArrayToImage(item.SampleImage);
+            itemType.Enabled = false;
+          
+            using (var p = new POSEntities())
+            {               
+                ImageBox.Image = POS.Misc.ImageDatabaseConverter.byteArrayToImage(p.Items.FirstOrDefault(x=>x.Barcode == target.Barcode).SampleImage);
             }
-            name.Text = item.Name;
-            sellingPrice.Value = item.SellingPrice;
-            itemDepartment.Text = item.Department;
-            details.Text = item.Details;
+
+            name.Text = target.Name;
+            sellingPrice.Value = target.SellingPrice;
+            itemDepartment.Text = target.Department;
+            details.Text = target.Details;
         }
         public void GetBarcode(string item)
         {
-            barcode.Text = item;
+            using (var p = new POSEntities())
+            {
+                target = p.Items.FirstOrDefault(x => x.Barcode == item);
+            }           
         }
         public override void save()
         {
@@ -48,18 +52,18 @@ namespace POS.Forms
                 {
                     var item = p.Items.FirstOrDefault(x => x.Barcode == barcode.Text);
                     item.Name = name.Text;
-                    //item.Cost = cost.Value;
+                    item.DefaultCost = defaultCost.Value;
                     item.SellingPrice = sellingPrice.Value;
-                    //item.Type = itemType.Text;
                     item.Department = itemDepartment.Text;
                     item.Details = details.Text;
+
                     if (ImageBox.Image != null)
                     {
                         item.SampleImage = Misc.ImageDatabaseConverter.imageToByteArray(ImageBox.Image);
                     }
 
                     p.SaveChanges();
-                    InvokeEvent();                    
+                    InvokeEvent();
                     MessageBox.Show("Successfully saved.");
                     this.Close();
                 }

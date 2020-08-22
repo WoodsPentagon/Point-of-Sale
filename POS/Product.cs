@@ -14,19 +14,13 @@ namespace POS
     
     public partial class Product
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Product()
-        {
-            this.InventoryItems = new HashSet<InventoryItem>();
-        }
-    
         public int Id { get; set; }
-        public string ItemId { get; set; }
+        public string ItemBarcode { get; set; }
+        public int Quantity { get; set; }
+        public string SerialNumber { get; set; }
         public Nullable<int> SupplierId { get; set; }
         public Nullable<decimal> Cost { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InventoryItem> InventoryItems { get; set; }
         public virtual Item Item { get; set; }
         public virtual Supplier Supplier { get; set; }
     }
