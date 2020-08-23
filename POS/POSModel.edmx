@@ -4,7 +4,16 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="POSVers2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="POSVers2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContactDetails" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Item">
           <Key>
             <PropertyRef Name="Barcode" />
@@ -17,6 +26,15 @@
           <Property Name="SampleImage" Type="image" />
           <Property Name="Department" Type="nvarchar" MaxLength="50" />
           <Property Name="Type" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItemVariation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemBarcode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SupplierId" Type="int" Nullable="false" />
+          <Property Name="Cost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -37,6 +55,30 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ContactDetails" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <Association Name="FK_ItemVariation_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="ItemVariation" Type="Self.ItemVariation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="Barcode" />
+            </Principal>
+            <Dependent Role="ItemVariation">
+              <PropertyRef Name="ItemBarcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemVariation_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+          <End Role="ItemVariation" Type="Self.ItemVariation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemVariation">
+              <PropertyRef Name="SupplierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Product_Item">
           <End Role="Item" Type="Self.Item" Multiplicity="1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
@@ -50,21 +92,31 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Product_Supplier">
-          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Supplier">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Product">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="SupplierId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="POSVers2ModelStoreContainer">
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemVariation" EntityType="Self.ItemVariation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ItemVariation_Item" Association="Self.FK_ItemVariation_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="ItemVariation" EntitySet="ItemVariation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemVariation_Supplier" Association="Self.FK_ItemVariation_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="ItemVariation" EntitySet="ItemVariation" />
+          </AssociationSet>
           <AssociationSet Name="FK_Product_Item" Association="Self.FK_Product_Item">
             <End Role="Item" EntitySet="Item" />
             <End Role="Product" EntitySet="Product" />
@@ -74,11 +126,19 @@
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="POSVers2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactDetails" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
         <EntityType Name="Item">
           <Key>
             <PropertyRef Name="Barcode" />
@@ -92,6 +152,7 @@
           <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Type" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Products" Relationship="Self.FK_Product_Item" FromRole="Item" ToRole="Product" />
+          <NavigationProperty Name="ItemVariations" Relationship="POSVers2Model.FK_ItemVariation_Item" FromRole="Item" ToRole="ItemVariation" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -113,7 +174,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ContactDetails" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_Product_Supplier" FromRole="Supplier" ToRole="Product" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Product_Supplier" FromRole="Supplier" ToRole="Product" />
+          <NavigationProperty Name="ItemVariations" Relationship="POSVers2Model.FK_ItemVariation_Supplier" FromRole="Supplier" ToRole="ItemVariation" />
         </EntityType>
         <Association Name="FK_Product_Item">
           <End Role="Item" Type="Self.Item" Multiplicity="1" />
@@ -128,18 +190,19 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Product_Supplier">
-          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Supplier">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Product">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="SupplierId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="POSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Items" EntityType="Self.Item" />
           <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
@@ -151,13 +214,67 @@
             <End Role="Supplier" EntitySet="Suppliers" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
-        </EntityContainer>
-      </Schema>
+          <EntitySet Name="ItemVariations" EntityType="POSVers2Model.ItemVariation" />
+          <AssociationSet Name="FK_ItemVariation_Item" Association="POSVers2Model.FK_ItemVariation_Item">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="ItemVariation" EntitySet="ItemVariations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemVariation_Supplier" Association="POSVers2Model.FK_ItemVariation_Supplier">
+            <End Role="Supplier" EntitySet="Suppliers" />
+            <End Role="ItemVariation" EntitySet="ItemVariations" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="ItemVariation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemBarcode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SupplierId" Type="Int32" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <NavigationProperty Name="Item" Relationship="POSVers2Model.FK_ItemVariation_Item" FromRole="ItemVariation" ToRole="Item" />
+          <NavigationProperty Name="Supplier" Relationship="POSVers2Model.FK_ItemVariation_Supplier" FromRole="ItemVariation" ToRole="Supplier" />
+        </EntityType>
+        <Association Name="FK_ItemVariation_Item">
+          <End Type="POSVers2Model.Item" Role="Item" Multiplicity="1" />
+          <End Type="POSVers2Model.ItemVariation" Role="ItemVariation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="Barcode" />
+            </Principal>
+            <Dependent Role="ItemVariation">
+              <PropertyRef Name="ItemBarcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemVariation_Supplier">
+          <End Type="POSVers2Model.Supplier" Role="Supplier" Multiplicity="1" />
+          <End Type="POSVers2Model.ItemVariation" Role="ItemVariation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemVariation">
+              <PropertyRef Name="SupplierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="POSVers2ModelStoreContainer" CdmEntityContainer="POSEntities">
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="POSVers2Model.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ContactDetails" ColumnName="ContactDetails" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Items">
             <EntityTypeMapping TypeName="POSVers2Model.Item">
               <MappingFragment StoreEntitySet="Item">
@@ -190,6 +307,16 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ContactDetails" ColumnName="ContactDetails" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemVariations">
+            <EntityTypeMapping TypeName="POSVers2Model.ItemVariation">
+              <MappingFragment StoreEntitySet="ItemVariation">
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+                <ScalarProperty Name="ItemBarcode" ColumnName="ItemBarcode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

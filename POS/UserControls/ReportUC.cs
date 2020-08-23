@@ -81,15 +81,15 @@ namespace POS.UserControls
 
         private void saleTable_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            var table = (DataGridView)sender;
-            int index = table.CurrentCell.RowIndex;
+            //var table = (DataGridView)sender;
+            //int index = table.CurrentCell.RowIndex;
 
-            using (var saleDetails = new SaleDetails())
-            {
-                saleDetails.SetId(ids[index]);
-                saleDetails.OnSave += (a, b) => { setCharegedTable(); };
-                saleDetails.ShowDialog();
-            }
+            //using (var saleDetails = new SaleDetails())
+            //{
+            //    saleDetails.SetId(ids[index]);
+            //    saleDetails.OnSave += (a, b) => { setCharegedTable(); };
+            //    saleDetails.ShowDialog();
+            //}
         }
 
         private void month_SelectedIndexChanged(object sender, EventArgs e)
@@ -107,39 +107,39 @@ namespace POS.UserControls
 
         void setRegularTableByDate()
         {
-            string type = SaleType.Regular.ToString();
-            saleTable.Rows.Clear();
+            //string type = SaleType.Regular.ToString();
+            //saleTable.Rows.Clear();
 
-            IQueryable<Sale> filteredSales;
-            using (var p = new POSEntities())
-            {
-                filteredSales = p.Sales.Where(x => x.Date.Value.Year == (int)year.Value && x.SaleType == SaleType.Regular.ToString());
+            //IQueryable<Sale> filteredSales;
+            //using (var p = new POSEntities())
+            //{
+            //    filteredSales = p.Sales.Where(x => x.Date.Value.Year == (int)year.Value && x.SaleType == SaleType.Regular.ToString());
 
-                if (!string.IsNullOrEmpty(month.Text))
-                    filteredSales = filteredSales.Where(x => x.Date.Value.Month == month.SelectedIndex + 1);
+            //    if (!string.IsNullOrEmpty(month.Text))
+            //        filteredSales = filteredSales.Where(x => x.Date.Value.Month == month.SelectedIndex + 1);
 
-                if (!string.IsNullOrEmpty(day.Text))
-                    filteredSales = filteredSales.Where(x => x.Date.Value.Day == (int)day.Value);
+            //    if (!string.IsNullOrEmpty(day.Text))
+            //        filteredSales = filteredSales.Where(x => x.Date.Value.Day == (int)day.Value);
 
-                totalSale.Text = string.Format("₱ {0:n}", filteredSales.Sum(x => x.TotalPrice));
+            //    totalSale.Text = string.Format("₱ {0:n}", filteredSales.Sum(x => x.TotalPrice));
 
-                ids = filteredSales.Select(x => x.Id).ToArray();
+            //    ids = filteredSales.Select(x => x.Id).ToArray();
 
-                foreach (var x in filteredSales)
-                    saleTable.Rows.Add(x.Date.Value.ToString("MMMM dd, yyyy hh:mm: tt"), x.Login?.Username, x.Customer.Name, string.Format("₱ {0:n}", x.TotalPrice));
-            }
+            //    foreach (var x in filteredSales)
+            //        saleTable.Rows.Add(x.Date.Value.ToString("MMMM dd, yyyy hh:mm: tt"), x.Login?.Username, x.Customer.Name, string.Format("₱ {0:n}", x.TotalPrice));
+            //}
         }
 
         void setCharegedTable()
         {
-            chargedTable.Rows.Clear();
-            using (var p = new POSEntities())
-            {
-                var sales = p.Sales.Where(x => x.SaleType == SaleType.Charged.ToString()).OrderBy(x => x.Date);
-                ids = sales.Select(x => x.Id).ToArray();
-                foreach (var x in sales)
-                    chargedTable.Rows.Add(x.Date.Value.ToString("MMMM dd, yyyy hh:mm tt"), x.Login?.Username, x.Customer.Name, string.Format("₱ {0:n}", x.TotalPrice), string.Format("₱ {0:n}", x.AmountRecieved), x.AmountRecieved < x.TotalPrice ? false : true);
-            }
+            //chargedTable.Rows.Clear();
+            //using (var p = new POSEntities())
+            //{
+            //    var sales = p.Sales.Where(x => x.SaleType == SaleType.Charged.ToString()).OrderBy(x => x.Date);
+            //    ids = sales.Select(x => x.Id).ToArray();
+            //    foreach (var x in sales)
+            //        chargedTable.Rows.Add(x.Date.Value.ToString("MMMM dd, yyyy hh:mm tt"), x.Login?.Username, x.Customer.Name, string.Format("₱ {0:n}", x.TotalPrice), string.Format("₱ {0:n}", x.AmountRecieved), x.AmountRecieved < x.TotalPrice ? false : true);
+            //}
         }
 
         private void month_TextChanged(object sender, EventArgs e)
@@ -151,25 +151,15 @@ namespace POS.UserControls
 
         void searchChargeByName()
         {
-            //for(int i =0;i< chargedTable.RowCount; i++)
-            //{
-            //    //// need to lower the case because string.contains is case sensitive :(
-            //    string name = chargedTable.Rows[i].Cells[2].Value.ToString().ToLower();
-            //    if (name.Contains(chargedSaleSearch.Text.ToLower()))
-            //    {
-            //        chargedTable.Rows[i].Selected = true;
-            //        chargedTable.FirstDisplayedScrollingRowIndex = i;
-            //        break;
-            //    }
-            //}       
+           
             chargedTable.Rows.Clear();
-            using (var p = new POSEntities())
-            {
-                var sales = p.Sales.Where(x => x.SaleType == SaleType.Charged.ToString() && x.Customer.Name.Contains(chargedSaleSearch.Text)).OrderBy(x => x.Date);
-                ids = sales.Select(x => x.Id).ToArray();
-                foreach (var x in sales)
-                    chargedTable.Rows.Add(x.Date.Value.ToString("MMMM dd, yyyy hh:mm tt"), x.Login?.Username, x.Customer.Name, string.Format("₱ {0:n}", x.TotalPrice), string.Format("₱ {0:n}", x.AmountRecieved), x.AmountRecieved < x.TotalPrice ? false : true);
-            }
+            //using (var p = new POSEntities())
+            //{
+            //    var sales = p.Sales.Where(x => x.SaleType == SaleType.Charged.ToString() && x.Customer.Name.Contains(chargedSaleSearch.Text)).OrderBy(x => x.Date);
+            //    ids = sales.Select(x => x.Id).ToArray();
+            //    foreach (var x in sales)
+            //        chargedTable.Rows.Add(x.Date.Value.ToString("MMMM dd, yyyy hh:mm tt"), x.Login?.Username, x.Customer.Name, string.Format("₱ {0:n}", x.TotalPrice), string.Format("₱ {0:n}", x.AmountRecieved), x.AmountRecieved < x.TotalPrice ? false : true);
+            //}
 
         }
 

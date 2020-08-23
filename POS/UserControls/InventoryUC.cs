@@ -42,11 +42,11 @@ namespace POS.UserControls
                 initInventoryTable();
                 initItemsTable();
 
-                var currlog = UserManager.instance.currentLogin;
-                stockinBtn.Enabled = currlog.CanStockIn ?? false;
-                addVariationsBtn.Enabled = currlog.CanAddProduct ?? false;
-                addItemBtn.Enabled = currlog.CanAddItem ?? false;
-                editItemBtn.Enabled = currlog.CanEditItem ?? false;
+                ////var currlog = UserManager.instance.currentLogin;
+                //stockinBtn.Enabled = currlog.CanStockIn ?? false;
+                //addVariationsBtn.Enabled = currlog.CanAddProduct ?? false;
+                //addItemBtn.Enabled = currlog.CanAddItem ?? false;
+                //editItemBtn.Enabled = currlog.CanEditItem ?? false;
             }
 
         }
@@ -69,11 +69,11 @@ namespace POS.UserControls
 
         protected virtual void firstBtn_Click(object sender, EventArgs e)
         {
-            using (var sell = new MakeSale())
-            {
-                sell.OnSave += OnInventoryChangedCallback;
-                sell.ShowDialog();
-            }
+            //using (var sell = new MakeSale())
+            //{
+            //    sell.OnSave += OnInventoryChangedCallback;
+            //    sell.ShowDialog();
+            //}
         }
 
         protected virtual void secondBtn_Click(object sender, EventArgs e)
@@ -126,11 +126,11 @@ namespace POS.UserControls
 
             using (var p = new POSEntities())
             {
-                var itemGroup = p.InventoryItems.GroupBy(x => x.Product.Item.Barcode);
+                var itemGroup = p.Products.GroupBy(x => x.Item.Barcode);
                 foreach (var i in itemGroup)
                 {
                     var item = p.Items.FirstOrDefault(x => x.Barcode == i.Key);
-                    int totalQuantity = p.InventoryItems.Where(x => x.Product.Item.Barcode == i.Key).Sum(x => x.Quantity);
+                    int totalQuantity = p.Products.Where(x => x.Item.Barcode == i.Key).Sum(x => x.Quantity);
 
                     inventoryTable.Rows.Add(item.Barcode, item.Name, string.Format("₱ {0:n}", item.SellingPrice), (totalQuantity == 0 ? "Infinite" : totalQuantity.ToString()), (totalQuantity == 0 ? "----" : string.Format("₱ {0:n}", totalQuantity * item.SellingPrice)));
                 }
@@ -150,7 +150,7 @@ namespace POS.UserControls
             {
                 foreach (var i in p.Items)
                 {
-                    itemsTable.Rows.Add(i.Barcode, i.Name, string.Format("₱ {0:n}", i.SellingPrice), i.Department, i.Type, i.Details);
+                    itemsTable.Rows.Add(i.Barcode, i.Name, string.Format("₱ {0:n}", i.SellingPrice), i.Department, (ItemType)i.Type, i.Details ?? "NONE");
                 }
             }
         }
@@ -171,20 +171,8 @@ namespace POS.UserControls
             }
         }
 
-        private void addVariationsBtn_Click(object sender, EventArgs e)
-        {
-            if (itemsTable.RowCount <= 0)
-            {
-                MessageBox.Show("You do not have an item.");
-                return;
-            }
-            using (var variation = new AddProductForm())
-                variation.ShowDialog();
-        }
-
         public void Refresh_Callback(object sender, EventArgs e)
         {
-            Console.WriteLine("Refreshed: " + this.Name);
             initInventoryTable();
             initItemsTable();
         }
@@ -229,7 +217,7 @@ namespace POS.UserControls
                 }
             }
 
-            MessageBox.Show("Sorry, Product not found.");
+            MessageBox.Show("Sorry, entry not found.");
         }
 
 
@@ -239,6 +227,25 @@ namespace POS.UserControls
             {
                 searchBtn.PerformClick();
             }
+        }
+
+        private void addVariationBtn_Click(object sender, EventArgs e)
+        {
+            if (itemsTable.RowCount == 0)
+                return;
+            using (var addProd = new AddProductForm(getValueByCurrentRowAndSpecificColumn(itemsTable, 0).ToString()))
+            {
+                addProd.ShowDialog();
+            }
+        }
+
+        private void itemsTable_SelectionChanged(object sender, EventArgs e)
+        {
+            if (itemsTable.SelectedCells.Count == 0)
+                return;
+            var type = itemsTable.Rows[itemsTable.SelectedCells[0].RowIndex].Cells[4].Value.ToString();
+            addVariationBtn.Enabled = type != ItemType.Hardware.ToString() ? false : true;
+
         }
     }
 }

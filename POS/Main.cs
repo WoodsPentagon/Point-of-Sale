@@ -29,7 +29,7 @@ namespace POS
             foreach (var i in uControls)
                 i.Initialize();
 
-            userButton.Text = UserManager.instance.currentLogin.Username;
+            //userButton.Text = UserManager.instance.currentLogin.Username;
             foreach (var i in uControls)
                 refreshToolStripBtn.Click += i.Refresh_Callback;
         }
@@ -86,23 +86,23 @@ namespace POS
         {
             if (e.KeyCode == Keys.F1)
             {
-                if (!UserManager.instance.currentLogin.CanAddUser ?? false)
-                {
-                    MessageBox.Show("Cannot perform this action!");
-                    return;
-                }
+                //if (!UserManager.instance.currentLogin.CanAddUser ?? false)
+                //{
+                //    MessageBox.Show("Cannot perform this action!");
+                //    return;
+                //}
                 ///add new login
-                using (var newlogin = new CreateLogin())
-                    newlogin.ShowDialog();
+                //using (var newlogin = new CreateLogin())
+                //    newlogin.ShowDialog();
             }
             else if (e.KeyCode == Keys.F2)
             {
                 ///change password
-                using (var changepass = new ChangePass())
-                {
-                    changepass.SetUser(UserManager.instance.currentLogin.Username);
-                    changepass.ShowDialog();
-                }
+                //using (var changepass = new ChangePass())
+                //{
+                //    changepass.SetUser(UserManager.instance.currentLogin.Username);
+                //    changepass.ShowDialog();
+                //}
             }
             else if (e.KeyCode == Keys.F5)
             {
@@ -121,23 +121,23 @@ namespace POS
 
         private void addNewUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!UserManager.instance.currentLogin.CanAddUser ?? false)
-            {
-                MessageBox.Show("Cannot perform this action!");
-                return;
-            }
-            ///add new login
-            using (var newlogin = new CreateLogin())
-                newlogin.ShowDialog();
+            //if (!UserManager.instance.currentLogin.CanAddUser ?? false)
+            //{
+            //    MessageBox.Show("Cannot perform this action!");
+            //    return;
+            //}
+            /////add new login
+            //using (var newlogin = new CreateLogin())
+            //    newlogin.ShowDialog();
         }
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (var changepass = new ChangePass())
-            {
-                changepass.SetUser(UserManager.instance.currentLogin.Username);
-                changepass.ShowDialog();
-            }
+            //using (var changepass = new ChangePass())
+            //{
+            //    changepass.SetUser(UserManager.instance.currentLogin.Username);
+            //    changepass.ShowDialog();
+            //}
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
@@ -148,18 +148,18 @@ namespace POS
 
         private void addNewLoginToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            using (var login = new CreateLogin())
-                login.ShowDialog();
+            //using (var login = new CreateLogin())
+            //    login.ShowDialog();
         }
 
         private void changePasswordToolStripMenuItem2_Click(object sender, EventArgs e)
         {
 
-            using (var changePass = new ChangePass())
-            {
-                changePass.SetUser(UserManager.instance.currentLogin.Username);
-                changePass.ShowDialog();
-            }
+            //using (var changePass = new ChangePass())
+            //{
+            //    changePass.SetUser(UserManager.instance.currentLogin.Username);
+            //    changePass.ShowDialog();
+            //}
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -170,27 +170,21 @@ namespace POS
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-            using (StockinLog log = new StockinLog())
-                log.ShowDialog();
+            //using (StockinLog log = new StockinLog())
+            //    log.ShowDialog();
         }
 
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
-            using(var sellForm = new SellForm())
-            {
-                sellForm.ShowDialog();
-            }
+            //using(var sellForm = new SellForm())
+            //{
+            //    sellForm.ShowDialog();
+            //}
         }
 
         private void refreshToolStripBtn_Click(object sender, EventArgs e)
         {
 
         }
-
-        //private void toolStripButton4_Click(object sender, EventArgs e)
-        //{
-        //    //foreach(var i in uControls)
-        //    //    i.re
-        //}
     }
 }

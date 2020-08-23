@@ -13,18 +13,35 @@ namespace POS.Forms
 {
     public partial class AddProductForm : Form
     {
+        Item target;
+
         public AddProductForm()
         {
             InitializeComponent();
         }
 
-        private void AddProductForm_Load(object sender, EventArgs e)
+        public AddProductForm(string barcode)
         {
+            InitializeComponent();
             using (var p = new POSEntities())
             {
+                target = p.Items.FirstOrDefault(x => x.Barcode == barcode);
+            }
+        }
 
-                foreach (var x in p.Items.Where(x => x.Type == Misc.ItemType.Hardware.ToString()))
-                    itemsTable.Rows.Add(x.Barcode, x.Name);
+        private void AddProductForm_Load(object sender, EventArgs e)
+        {
+            barcode.Text = target.Barcode;
+            itemName.Text = target.Name;
+            cost.Value = target.DefaultCost;
+
+            using (var p = new POSEntities())
+            {
+                supplier.Items.AddRange(p.Suppliers.Where(x => x.ItemVariations.FirstOrDefault(y => y.ItemBarcode == target.Barcode) == null).Select(x => x.Name).ToArray());
+                foreach (var i in p.ItemVariations.Where(x => x.Item.Barcode == target.Barcode))
+                {
+                    varTable.Rows.Add(i.Supplier.Name, i.Cost);
+                }
             }
         }
 
@@ -35,59 +52,33 @@ namespace POS.Forms
                 MessageBox.Show("Supplier can never be empty");
                 return;
             }
+
+            switch (MessageBox.Show("Are you sure you want to continue?", "", MessageBoxButtons.OKCancel))
+            {
+                case DialogResult.OK:
+                    break;
+                case DialogResult.Cancel:
+                    return;
+            }
             using (var p = new POSEntities())
             {
-                var newProduct = new Product();
-                newProduct.ItemId = barcode.Text;
-                var s = p.Suppliers.FirstOrDefault(x => x.Name == supplier.Text);
-                newProduct.Supplier = s;
-                newProduct.Cost = cost.Value;
+                var newVariation = new ItemVariation();
+                newVariation.Item = p.Items.FirstOrDefault(x => x.Barcode == target.Barcode);
+                newVariation.Supplier = p.Suppliers.FirstOrDefault(x => x.Name == supplier.Text);
+                newVariation.Cost = cost.Value;
 
-                p.Products.Add(newProduct);
+                p.ItemVariations.Add(newVariation);
                 p.SaveChanges();
-                MessageBox.Show("Product added");
-                this.Close();
+
             }
+            varTable.Rows.Add(supplier.Text, cost.Value);
+            supplier.Items.RemoveAt(supplier.SelectedIndex);
         }
 
         object TableCurrentValueAt(int index)
         {
-            return itemsTable.Rows[itemsTable.SelectedCells[0].RowIndex].Cells[index].Value;
+            return varTable.Rows[varTable.SelectedCells[0].RowIndex].Cells[index].Value;
 
-        }
-
-        private void itemsTable_SelectionChanged(object sender, EventArgs e)
-        {
-            var id = TableCurrentValueAt(0).ToString();
-
-            using (var p = new POSEntities())
-            {
-                selectedItem = p.Items.FirstOrDefault(x => x.Barcode == id);
-                barcode.Text = selectedItem.Barcode;
-                itemName.Text = selectedItem.Name;
-
-                supplier.Items.Clear();
-
-                foreach (var x in p.Suppliers.Where(x => x.Products.FirstOrDefault(y => y.ItemId == id) == null))
-                    supplier.Items.Add(x.Name);
-            }
-        }
-
-        Item selectedItem;
-
-        private void barcode_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode != Keys.Enter)
-                return;
-
-            for (int i = 0; i < itemsTable.RowCount; i++)
-            {
-                if (barcode.Text == itemsTable.Rows[i].Cells[0].Value.ToString())
-                {
-                    itemsTable.Rows[i].Selected = true;
-                    break;
-                }
-            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -103,8 +94,24 @@ namespace POS.Forms
             {
                 supplier.Items.Clear();
 
-                foreach (var x in p.Suppliers.Where(x => x.Products.FirstOrDefault(y => y.ItemId == selectedItem.Barcode) == null))
+                foreach (var x in p.Suppliers.Where(x => x.Products.FirstOrDefault(y => y.ItemBarcode == target.Barcode) == null))
                     supplier.Items.Add(x.Name);
+            }
+        }
+
+        private void itemsTable_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            var s = e.Row.Cells[0].Value.ToString();
+            if (MessageBox.Show("Are you sure you want to remove item variation of this item with supplier " + s + "?", "", MessageBoxButtons.OKCancel) == DialogResult.Cancel)
+                return;
+            using (var p = new POSEntities())
+            {
+
+                ItemVariation variation = p.ItemVariations.FirstOrDefault(x => x.ItemBarcode == target.Barcode && x.Supplier.Name == s);
+                p.ItemVariations.Remove(variation);
+                p.SaveChanges();
+
+                supplier.Items.Add(s);
             }
         }
     }

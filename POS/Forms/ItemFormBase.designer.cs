@@ -147,7 +147,7 @@
             this.groupBox5.Location = new System.Drawing.Point(224, 104);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(250, 40);
-            this.groupBox5.TabIndex = 4;
+            this.groupBox5.TabIndex = 3;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Item Selling Price";
             // 
@@ -171,12 +171,10 @@
             // 
             // groupBox6
             // 
-            this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox6.Controls.Add(this.details);
             this.groupBox6.Location = new System.Drawing.Point(12, 196);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(782, 242);
+            this.groupBox6.Size = new System.Drawing.Size(782, 247);
             this.groupBox6.TabIndex = 7;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Item Details ";
@@ -194,7 +192,7 @@
             this.details.MaxLength = 500;
             this.details.Multiline = true;
             this.details.Name = "details";
-            this.details.Size = new System.Drawing.Size(769, 216);
+            this.details.Size = new System.Drawing.Size(769, 221);
             this.details.TabIndex = 0;
             // 
             // groupBox8
@@ -205,7 +203,7 @@
             this.groupBox8.Location = new System.Drawing.Point(480, 150);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(314, 40);
-            this.groupBox8.TabIndex = 5;
+            this.groupBox8.TabIndex = 6;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Item Department";
             // 
@@ -258,7 +256,7 @@
             this.groupBox4.Location = new System.Drawing.Point(480, 104);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(314, 40);
-            this.groupBox4.TabIndex = 6;
+            this.groupBox4.TabIndex = 5;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Item Type";
             // 
@@ -282,7 +280,7 @@
             this.groupBox7.Location = new System.Drawing.Point(224, 150);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(250, 40);
-            this.groupBox7.TabIndex = 5;
+            this.groupBox7.TabIndex = 4;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Item Default Cost";
             // 
@@ -309,12 +307,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(803, 484);
+            this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.saveBtn);
             this.Controls.Add(this.takePhotoBtn);
             this.Controls.Add(this.groupBox8);
-            this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);

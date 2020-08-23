@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InventoryUC));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.sellBtn = new System.Windows.Forms.Button();
             this.inventoryTable = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,11 +40,9 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.inventoryPage = new System.Windows.Forms.TabPage();
-            this.searchBtn = new System.Windows.Forms.Button();
-            this.search = new System.Windows.Forms.TextBox();
             this.stockinBtn = new System.Windows.Forms.Button();
             this.itemsPage = new System.Windows.Forms.TabPage();
-            this.addVariationsBtn = new System.Windows.Forms.Button();
+            this.addVariationBtn = new System.Windows.Forms.Button();
             this.editItemBtn = new System.Windows.Forms.Button();
             this.addItemBtn = new System.Windows.Forms.Button();
             this.itemsTable = new System.Windows.Forms.DataGridView();
@@ -54,6 +52,8 @@
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.searchBtn = new System.Windows.Forms.Button();
+            this.search = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.inventoryTable)).BeginInit();
             this.tabControl.SuspendLayout();
@@ -99,14 +99,14 @@
             this.Column3,
             this.Column5,
             this.Column4});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.inventoryTable.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.inventoryTable.DefaultCellStyle = dataGridViewCellStyle5;
             this.inventoryTable.EnableHeadersVisualStyles = false;
             this.inventoryTable.GridColor = System.Drawing.Color.White;
             this.inventoryTable.Location = new System.Drawing.Point(8, 63);
@@ -188,28 +188,6 @@
             this.inventoryPage.Text = "INVENTORY";
             this.inventoryPage.UseVisualStyleBackColor = true;
             // 
-            // searchBtn
-            // 
-            this.searchBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.searchBtn.Image = ((System.Drawing.Image)(resources.GetObject("searchBtn.Image")));
-            this.searchBtn.Location = new System.Drawing.Point(732, 59);
-            this.searchBtn.Name = "searchBtn";
-            this.searchBtn.Size = new System.Drawing.Size(33, 26);
-            this.searchBtn.TabIndex = 5;
-            this.searchBtn.UseVisualStyleBackColor = true;
-            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
-            // 
-            // search
-            // 
-            this.search.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.search.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.search.Location = new System.Drawing.Point(441, 59);
-            this.search.Name = "search";
-            this.search.Size = new System.Drawing.Size(291, 26);
-            this.search.TabIndex = 4;
-            this.search.KeyDown += new System.Windows.Forms.KeyEventHandler(this.search_KeyDown);
-            // 
             // stockinBtn
             // 
             this.stockinBtn.BackColor = System.Drawing.SystemColors.Control;
@@ -231,7 +209,7 @@
             // 
             // itemsPage
             // 
-            this.itemsPage.Controls.Add(this.addVariationsBtn);
+            this.itemsPage.Controls.Add(this.addVariationBtn);
             this.itemsPage.Controls.Add(this.editItemBtn);
             this.itemsPage.Controls.Add(this.addItemBtn);
             this.itemsPage.Controls.Add(this.itemsTable);
@@ -243,35 +221,36 @@
             this.itemsPage.Text = "ITEMS";
             this.itemsPage.UseVisualStyleBackColor = true;
             // 
-            // addVariationsBtn
+            // addVariationBtn
             // 
-            this.addVariationsBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.addVariationsBtn.BackColor = System.Drawing.SystemColors.Control;
-            this.addVariationsBtn.FlatAppearance.BorderSize = 0;
-            this.addVariationsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.addVariationsBtn.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addVariationsBtn.Image = ((System.Drawing.Image)(resources.GetObject("addVariationsBtn.Image")));
-            this.addVariationsBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.addVariationsBtn.Location = new System.Drawing.Point(585, 8);
-            this.addVariationsBtn.Margin = new System.Windows.Forms.Padding(5);
-            this.addVariationsBtn.Name = "addVariationsBtn";
-            this.addVariationsBtn.Size = new System.Drawing.Size(150, 33);
-            this.addVariationsBtn.TabIndex = 9;
-            this.addVariationsBtn.Text = "ADD ITEM VARIATION";
-            this.addVariationsBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.addVariationsBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.addVariationsBtn.UseVisualStyleBackColor = false;
-            this.addVariationsBtn.Click += new System.EventHandler(this.addVariationsBtn_Click);
+            this.addVariationBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.addVariationBtn.BackColor = System.Drawing.SystemColors.Control;
+            this.addVariationBtn.FlatAppearance.BorderSize = 0;
+            this.addVariationBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.addVariationBtn.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addVariationBtn.Image = ((System.Drawing.Image)(resources.GetObject("addVariationBtn.Image")));
+            this.addVariationBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.addVariationBtn.Location = new System.Drawing.Point(595, 8);
+            this.addVariationBtn.Margin = new System.Windows.Forms.Padding(5);
+            this.addVariationBtn.Name = "addVariationBtn";
+            this.addVariationBtn.Size = new System.Drawing.Size(142, 33);
+            this.addVariationBtn.TabIndex = 9;
+            this.addVariationBtn.Text = "ITEM  VARIATION";
+            this.addVariationBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.addVariationBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.addVariationBtn.UseVisualStyleBackColor = false;
+            this.addVariationBtn.Click += new System.EventHandler(this.addVariationBtn_Click);
             // 
             // editItemBtn
             // 
+            this.editItemBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.editItemBtn.BackColor = System.Drawing.SystemColors.Control;
             this.editItemBtn.FlatAppearance.BorderSize = 0;
             this.editItemBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.editItemBtn.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.editItemBtn.Image = ((System.Drawing.Image)(resources.GetObject("editItemBtn.Image")));
             this.editItemBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.editItemBtn.Location = new System.Drawing.Point(127, 8);
+            this.editItemBtn.Location = new System.Drawing.Point(476, 8);
             this.editItemBtn.Margin = new System.Windows.Forms.Padding(5);
             this.editItemBtn.Name = "editItemBtn";
             this.editItemBtn.Size = new System.Drawing.Size(109, 33);
@@ -321,14 +300,14 @@
             this.Column6,
             this.Column8,
             this.Column7});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.itemsTable.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.itemsTable.DefaultCellStyle = dataGridViewCellStyle6;
             this.itemsTable.EnableHeadersVisualStyles = false;
             this.itemsTable.Location = new System.Drawing.Point(8, 63);
             this.itemsTable.MultiSelect = false;
@@ -341,6 +320,7 @@
             this.itemsTable.TabIndex = 6;
             this.itemsTable.TabStop = false;
             this.itemsTable.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.itemsTable_CellMouseDoubleClick);
+            this.itemsTable.SelectionChanged += new System.EventHandler(this.itemsTable_SelectionChanged);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -388,6 +368,28 @@
             this.Column7.HeaderText = "DETAILS";
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
+            // 
+            // searchBtn
+            // 
+            this.searchBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.searchBtn.Image = ((System.Drawing.Image)(resources.GetObject("searchBtn.Image")));
+            this.searchBtn.Location = new System.Drawing.Point(732, 59);
+            this.searchBtn.Name = "searchBtn";
+            this.searchBtn.Size = new System.Drawing.Size(33, 26);
+            this.searchBtn.TabIndex = 5;
+            this.searchBtn.UseVisualStyleBackColor = true;
+            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
+            // 
+            // search
+            // 
+            this.search.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.search.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.search.Location = new System.Drawing.Point(441, 59);
+            this.search.Name = "search";
+            this.search.Size = new System.Drawing.Size(291, 26);
+            this.search.TabIndex = 4;
+            this.search.KeyDown += new System.Windows.Forms.KeyEventHandler(this.search_KeyDown);
             // 
             // label1
             // 
@@ -444,8 +446,8 @@
         protected System.Windows.Forms.Button stockinBtn;
         protected System.Windows.Forms.Button addItemBtn;
         protected System.Windows.Forms.Button editItemBtn;
-        protected System.Windows.Forms.Button addVariationsBtn;
         private System.Windows.Forms.Button searchBtn;
         private System.Windows.Forms.TextBox search;
+        protected System.Windows.Forms.Button addVariationBtn;
     }
 }

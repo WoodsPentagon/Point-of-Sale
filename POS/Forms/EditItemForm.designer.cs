@@ -29,8 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditItemForm));
-            ((System.ComponentModel.ISupportInitialize)(this.sellingPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageBox)).BeginInit();
+            this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sellingPrice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.defaultCost)).BeginInit();
             this.SuspendLayout();
             // 
             // barcode
@@ -46,8 +48,11 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "EditItemForm";
             this.Text = "Edit Item Form";
-            ((System.ComponentModel.ISupportInitialize)(this.sellingPrice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImageBox)).EndInit();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sellingPrice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.defaultCost)).EndInit();
             this.ResumeLayout(false);
 
         }

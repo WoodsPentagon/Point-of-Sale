@@ -30,13 +30,18 @@ namespace POS.Forms
                 itemName.Text = item.Name;
                 sellingPrice.Text = string.Format("₱ {0:n}", item.SellingPrice);
 
-                var invItem = p.InventoryItems.Where(x => x.Product.Item.Barcode == item.Barcode);
-                quantity.Text = invItem.Sum(x => x.Quantity).ToString();
+                var invItem = p.Products.Where(x => x.Item.Barcode == item.Barcode);
+
+                var sum = invItem.Sum(x => x.Quantity);
+                quantity.Text = sum == 0 ? "Infinite" : sum.ToString();
                 int counter = 0;
                 foreach (var i in invItem)
                 {
                     counter++;
-                    invTable.Rows.Add(counter, i.SerialNumber ?? "NONE", i.Quantity, i.Product.Supplier.Name);
+
+                    Console.WriteLine(i.SupplierId);
+
+                    invTable.Rows.Add(counter, i.SerialNumber ?? "NONE", i.Quantity == 0?"Infinite":i.Quantity.ToString(), (i.Supplier?.Name) ?? "NOT SPECIFIED");
                 }
             }
         }

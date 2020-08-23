@@ -51,70 +51,34 @@ namespace POS.Forms
 
         public virtual bool canSave()
         {
-            //if (string.IsNullOrEmpty(barcode.Text) || string.IsNullOrEmpty(name.Text))
-            //{
-            //    MessageBox.Show("Barcode and Item name can never be empty!");
-            //    return false;
-            //}
-
+            if (string.IsNullOrEmpty(barcode.Text) || string.IsNullOrEmpty(name.Text))
+            {
+                MessageBox.Show("Barcode and Item name can never be empty!");
+                return false;
+            }
             return true;
         }
+
         public virtual void save()
         {
-            //if (!canSave())
-            //{
-            //    return;
-            //}
 
-            //var item = new Item();
-            //item.Id = barcode.Text;
-            //item.Name = name.Text;
-
-            //item.SellingPrice = sellingPrice.Value;
-            //item.Cost = cost.Value;
-
-            //item.Department = itemDepartment.Text;
-            //item.Type = itemType.Text;
-
-            //item.Details = details.Text;
-
-            //try
-            //{
-            //    using (var p = new POSEntities())
-            //    {
-            //        p.Items.Add(item);
-            //        p.SaveChanges();
-            //        MessageBox.Show("Item Added");
-            //    }
-            //    InvokeEvent();
-            //    clearFields();
-            //}
-            //catch (Exception except)
-            //{
-            //    MessageBox.Show(except.Message);
-            //}
 
         }
+
         public virtual void Init()
         {
             try
             {
                 using (var p = new POSEntities())
                 {
-
-                    //var itemTypeGroup = p.Items.GroupBy(x => x.Type);
-                    //foreach (var i in itemTypeGroup)
-                    //{
-                    //    itemType.AutoCompleteCustomSource.Add(i.Key);
-                    //    itemType.Items.Add(i.Key);
-                    //}
+                    //vSupplier.Items.AddRange(p.Suppliers.Select(x => x.Name).ToArray());
                     var itemDeptGroup = p.Items.GroupBy(x => x.Department);
                     foreach (var i in itemDeptGroup)
                     {
                         itemDepartment.AutoCompleteCustomSource.Add(i.Key);
                         itemDepartment.Items.Add(i.Key);
                     }
-                   
+
                 }
                 var textboxes = this.GetContainedControls<TextBox>();
                 foreach (var i in textboxes)
@@ -142,6 +106,6 @@ namespace POS.Forms
                 {
                 }
             }
-        }
+        }       
     }
 }

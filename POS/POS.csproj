@@ -89,11 +89,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Customer.cs">
+      <DependentUpon>POSModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AddItemForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\AddItemForm.designer.cs">
       <DependentUpon>AddItemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddProductForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddProductForm.designer.cs">
+      <DependentUpon>AddProductForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ChangePass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ChangePass.designer.cs">
+      <DependentUpon>ChangePass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CreateCustomerProfile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CreateCustomerProfile.designer.cs">
+      <DependentUpon>CreateCustomerProfile.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\EditItemForm.cs">
       <SubType>Form</SubType>
@@ -101,19 +122,59 @@
     <Compile Include="Forms\EditItemForm.designer.cs">
       <DependentUpon>EditItemForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\InventoryItemView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InventoryItemView.Designer.cs">
+      <DependentUpon>InventoryItemView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ItemFormBase.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\ItemFormBase.designer.cs">
       <DependentUpon>ItemFormBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LoginForm.designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\StockinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\StockinForm.designer.cs">
+      <DependentUpon>StockinForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SupplierForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SupplierForm.designer.cs">
+      <DependentUpon>SupplierForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ViewItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ViewItem.designer.cs">
+      <DependentUpon>ViewItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Interfaces\ITab.cs" />
     <Compile Include="Item.cs">
       <DependentUpon>POSModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ItemVariation.cs">
+      <DependentUpon>POSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
     <Compile Include="Misc\Enums.cs" />
     <Compile Include="Misc\Helper.cs" />
     <Compile Include="Misc\ImageDatabaseConverter.cs" />
+    <Compile Include="Misc\UserManager.cs" />
     <Compile Include="POSModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -137,20 +198,59 @@
     <Compile Include="Supplier.cs">
       <DependentUpon>POSModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\InventoryUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\InventoryUC.Designer.cs">
+      <DependentUpon>InventoryUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Keypad.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\Keypad.Designer.cs">
       <DependentUpon>Keypad.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ReportUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ReportUC.designer.cs">
+      <DependentUpon>ReportUC.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Forms\AddItemForm.resx">
       <DependentUpon>AddItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddProductForm.resx">
+      <DependentUpon>AddProductForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ChangePass.resx">
+      <DependentUpon>ChangePass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CreateCustomerProfile.resx">
+      <DependentUpon>CreateCustomerProfile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EditItemForm.resx">
       <DependentUpon>EditItemForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InventoryItemView.resx">
+      <DependentUpon>InventoryItemView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ItemFormBase.resx">
       <DependentUpon>ItemFormBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\StockinForm.resx">
+      <DependentUpon>StockinForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SupplierForm.resx">
+      <DependentUpon>SupplierForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ViewItem.resx">
+      <DependentUpon>ViewItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -162,8 +262,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserControls\InventoryUC.resx">
+      <DependentUpon>InventoryUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Keypad.resx">
       <DependentUpon>Keypad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ReportUC.resx">
+      <DependentUpon>ReportUC.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <EntityDeploy Include="POSModel.edmx">
@@ -173,6 +279,7 @@
     <None Include="POSModel.edmx.diagram">
       <DependentUpon>POSModel.edmx</DependentUpon>
     </None>
+    <None Include="Properties\DataSources\Supplier.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

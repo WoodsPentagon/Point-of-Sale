@@ -25,15 +25,19 @@ namespace POS.Forms
             itemsTable.Rows.Clear();
             using (var p = new POSEntities())
             {
-                foreach (var i in p.Products.Where(x=>x.Item.Type == ItemType.Hardware.ToString()))
-                    itemsTable.Rows.Add(i.Item?.Barcode, i.Item?.Name, i.Cost, i.Supplier?.Name);
+                //foreach (var i in p.Products.Where(x=>x.Item.Type == ItemType.Hardware.ToString()))
+                //    itemsTable.Rows.Add(i.Item?.Barcode, i.Item?.Name, i.Cost, i.Supplier?.Name);
+                foreach(var i in p.Items.Where(x=>x.Type == (int)ItemType.Hardware))
+                {
+                    itemsTable.Rows.Add(i.Barcode, i.Name, i.DefaultCost);
+                }
             }
-            itemsTable.Sort(itemsTable.Columns[0], ListSortDirection.Ascending);
+            //itemsTable.Sort(itemsTable.Columns[0], ListSortDirection.Ascending);
         }
         private void StockinForm_Load(object sender, EventArgs e)
         {
             SetTable();
-            toolTip.SetToolTip(barcode, "Press f1 to set focus on barcode");
+            toolTip.SetToolTip(search, "Press f1 to set focus on barcode");
             toolTip.SetToolTip(serialNumber, "Press f2 to set focus on serial number");
             toolTip.SetToolTip(quantity, "Press f3 to set focus on quantity");
         }
@@ -44,18 +48,23 @@ namespace POS.Forms
                 return;
             using (var p = new POSEntities())
             {
-                /// get the current row
-                var currentRow = itemsTable.Rows[itemsTable.DataGridViewCurrentRowIndex()];
-                ///get the supplier name based on current row
-                string supplierName = currentRow.Cells[3].Value.ToString();
-                ///get the barcode based on current row
-                string barc = currentRow.Cells[0].Value.ToString();
 
-                selectedProduct = p.Products.FirstOrDefault(x => x.Supplier.Name == supplierName && x.ItemId == barc);
-                itemName.Text = selectedProduct.Item.Name;
-                cost.Text = selectedProduct.Cost.ToString();
-                supplier.Text = selectedProduct.Supplier.Name;
-                barcode.Text = selectedProduct.ItemId;
+                ///// get the current row
+                var currentRow = itemsTable.Rows[itemsTable.DataGridViewCurrentRowIndex()];
+                //// get the barcode
+                var barc = currentRow.Cells[0].Value.ToString();
+
+                var item = p.Items.FirstOrDefault(x => x.Barcode == barc);
+
+                barcode.Text = item.Barcode;
+                itemName.Text = item.Name;
+                cost.Value = item.DefaultCost;
+
+                supplier.Items.Clear();
+                supplier.IntegralHeight = false;
+               
+                supplier.Items.AddRange(p.ItemVariations.Where(x => x.ItemBarcode == item.Barcode).Select(x => x.Supplier.Name).ToArray());
+               
             }
             serialNumber.Text = string.Empty;
             this.ActiveControl = serialNumber;
@@ -101,47 +110,47 @@ namespace POS.Forms
                 Product product;
                 for (int i = 0; i < inventoryTable.RowCount; i++)
                 {
-                    var it = new InventoryItem();
-                    var itemId = inventoryTable.Rows[i].Cells[0].Value.ToString();
-                    var suppName = inventoryTable.Rows[i].Cells[6].Value.ToString();
-                    var serialNum = inventoryTable.Rows[i].Cells[1].Value.ToString();
-                    var q = Convert.ToInt32((inventoryTable.Rows[i].Cells[3].Value.ToString()));
-                    product = p.Products.FirstOrDefault(x => x.ItemId == itemId && x.Supplier.Name == suppName);
+                    //var it = new InventoryItem();
+                    //var itemId = inventoryTable.Rows[i].Cells[0].Value.ToString();
+                    //var suppName = inventoryTable.Rows[i].Cells[6].Value.ToString();
+                    //var serialNum = inventoryTable.Rows[i].Cells[1].Value.ToString();
+                    //var q = Convert.ToInt32((inventoryTable.Rows[i].Cells[3].Value.ToString()));
+                    //product = p.Products.FirstOrDefault(x => x.ItemId == itemId && x.Supplier.Name == suppName);
 
                    
-                    if (string.IsNullOrEmpty(serialNum))
-                    {
-                        it = p.InventoryItems.FirstOrDefault(x => x.Product.ItemId == itemId && x.Product.Supplier.Name == suppName);
-                        if (it == null)
-                        {
-                            it = new InventoryItem();
-                            it.Product = product;
-                            it.Quantity = q;
-                            p.InventoryItems.Add(it);
-                        }
-                        else
-                        {
-                            it.Quantity += q;
-                        }
-                    }
-                    else
-                    {
-                        it = new InventoryItem();
-                        it.Product = product;
-                        it.Quantity = q;
-                        it.SerialNumber = serialNum;
-                        p.InventoryItems.Add(it);
-                    }
-                    var stockinHist = new StockinHistory();
-                    stockinHist.ItemName = it.Product.Item.Name;
-                    stockinHist.Cost = it.Product.Cost;
-                    stockinHist.Supplier = it.Product.Supplier.Name;
-                    stockinHist.Date = DateTime.Now;
-                    stockinHist.Quantity = q;
-                    stockinHist.SerialNumber = it.SerialNumber;
-                    stockinHist.LoginUsername = p.Logins.FirstOrDefault(x => x.Username == UserManager.instance.currentLogin.Username).Username;
+                    //if (string.IsNullOrEmpty(serialNum))
+                    //{
+                    //    it = p.InventoryItems.FirstOrDefault(x => x.Product.ItemId == itemId && x.Product.Supplier.Name == suppName);
+                    //    if (it == null)
+                    //    {
+                    //        it = new InventoryItem();
+                    //        it.Product = product;
+                    //        it.Quantity = q;
+                    //        p.InventoryItems.Add(it);
+                    //    }
+                    //    else
+                    //    {
+                    //        it.Quantity += q;
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    it = new InventoryItem();
+                    //    it.Product = product;
+                    //    it.Quantity = q;
+                    //    it.SerialNumber = serialNum;
+                    //    p.InventoryItems.Add(it);
+                    //}
+                    //var stockinHist = new StockinHistory();
+                    //stockinHist.ItemName = it.Product.Item.Name;
+                    //stockinHist.Cost = it.Product.Cost;
+                    //stockinHist.Supplier = it.Product.Supplier.Name;
+                    //stockinHist.Date = DateTime.Now;
+                    //stockinHist.Quantity = q;
+                    //stockinHist.SerialNumber = it.SerialNumber;
+                    //stockinHist.LoginUsername = p.Logins.FirstOrDefault(x => x.Username == UserManager.instance.currentLogin.Username).Username;
 
-                    p.StockinHistories.Add(stockinHist);
+                    //p.StockinHistories.Add(stockinHist);
                 }
                 p.SaveChanges();
                 OnSave?.Invoke(this, null);
@@ -154,7 +163,7 @@ namespace POS.Forms
         {
             using (var p = new POSEntities())
             {
-                if (p.InventoryItems.FirstOrDefault(x => x.SerialNumber == serialNumber.Text) != null)
+                if (p.Products.FirstOrDefault(x => x.SerialNumber == serialNumber.Text) != null)
                 {
                     MessageBox.Show("Serial number already in inventory.");
                     return true;
@@ -186,7 +195,7 @@ namespace POS.Forms
             {
                 ///if not then check if the item to be added is already in the table, if yes just edit quantitty
                 int index;
-                if (alreadyInTable(barcode.Text, supplier.Text, out index))
+                if (alreadyInTable(search.Text, supplier.Text, out index))
                 {
                     var currentQuant = Convert.ToInt32(inventoryTable.Rows[index].Cells[3].Value);
                     inventoryTable.Rows[index].Cells[3].Value = currentQuant + quantity.Value;
@@ -196,7 +205,7 @@ namespace POS.Forms
             }
             ///else, add the item
             Decimal totalCost = quantity.Value * Convert.ToDecimal(cost.Text);
-            inventoryTable.Rows.Add(barcode.Text, serialNumber.Text, itemName.Text, quantity.Value, cost.Text, totalCost.ToString(), supplier.Text);
+            inventoryTable.Rows.Add(search.Text, serialNumber.Text, itemName.Text, quantity.Value, cost.Text, totalCost.ToString(), supplier.Text);
 
             serialNumber.Text = string.Empty;
         }
@@ -229,7 +238,7 @@ namespace POS.Forms
 
         private void barcode_KeyDown(object sender, KeyEventArgs e)
         {
-            if (barcode.Text == string.Empty)
+            if (search.Text == string.Empty)
                 return;
 
             if (e.KeyCode == Keys.Enter)
@@ -237,10 +246,10 @@ namespace POS.Forms
                 itemsTable.Rows.Clear();
                 using (var p = new POSEntities())
                 {
-                    var products = p.Products.Where(x => x.ItemId == barcode.Text);
-                    foreach (var i in products)
+                    var items = p.Items.Where(x => x.Barcode == search.Text && x.Type ==0);
+                    foreach (var i in items)
                     {
-                        itemsTable.Rows.Add(i.ItemId, i.Item.Name, i.Cost, i.Supplier.Name);
+                        itemsTable.Rows.Add(i.Barcode, i.Name, i.DefaultCost);
                     }
                 }
             }
@@ -248,14 +257,14 @@ namespace POS.Forms
 
         private void barcode_TextChanged(object sender, EventArgs e)
         {
-            if (barcode.TextLength <= 0)
+            if (search.TextLength <= 0)
                 SetTable();
         }
 
         private void StockinForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F1)
-                this.ActiveControl = barcode;
+                this.ActiveControl = search;
 
             if (e.KeyCode == Keys.F2)
                 this.ActiveControl = serialNumber;
@@ -276,6 +285,15 @@ namespace POS.Forms
         private void Additem_OnSave(object sender, EventArgs e)
         {
             SetTable();
+        }
+
+        private void supplier_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            using(var p = new POSEntities())
+            {
+                var v = p.ItemVariations.FirstOrDefault(x => x.ItemBarcode == barcode.Text && x.Supplier.Name == supplier.Text);
+                cost.Value = v.Cost;
+            }
         }
     }
 }

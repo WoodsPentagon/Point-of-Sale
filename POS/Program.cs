@@ -21,7 +21,7 @@ namespace POS
             //Application.Run(login);
 
             //if (login.LoginSuccessful)          
-                Application.Run(new Forms.AddItemForm());
+                Application.Run(new Main());
             
         }
     }

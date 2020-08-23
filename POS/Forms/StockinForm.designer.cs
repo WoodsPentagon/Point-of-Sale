@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StockinForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.removeBtn = new System.Windows.Forms.Button();
             this.stockinBtn = new System.Windows.Forms.Button();
@@ -48,25 +48,26 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.barcode = new System.Windows.Forms.TextBox();
+            this.createItemBtn = new System.Windows.Forms.Button();
+            this.search = new System.Windows.Forms.TextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.serialNumber = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.supplier = new System.Windows.Forms.TextBox();
+            this.supplier = new System.Windows.Forms.ComboBox();
             this.itemsTable = new System.Windows.Forms.DataGridView();
             this.Column0 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.cost = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.itemName = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.quantity = new System.Windows.Forms.NumericUpDown();
             this.addBtn = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.createItemBtn = new System.Windows.Forms.Button();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.barcode = new System.Windows.Forms.TextBox();
+            this.cost = new System.Windows.Forms.NumericUpDown();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.inventoryTable)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -79,6 +80,8 @@
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.quantity)).BeginInit();
+            this.groupBox9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cost)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -100,7 +103,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.removeBtn.Location = new System.Drawing.Point(6, 19);
             this.removeBtn.Name = "removeBtn";
-            this.removeBtn.Size = new System.Drawing.Size(559, 23);
+            this.removeBtn.Size = new System.Drawing.Size(562, 23);
             this.removeBtn.TabIndex = 8;
             this.removeBtn.TabStop = false;
             this.removeBtn.Text = "Remove";
@@ -129,14 +132,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.inventoryTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.inventoryTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle29.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
+            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.inventoryTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle29;
             this.inventoryTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.inventoryTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -146,14 +149,14 @@
             this.Column3,
             this.Column5,
             this.Column6});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.inventoryTable.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle30.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle30.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.inventoryTable.DefaultCellStyle = dataGridViewCellStyle30;
             this.inventoryTable.EnableHeadersVisualStyles = false;
             this.inventoryTable.Location = new System.Drawing.Point(6, 48);
             this.inventoryTable.MultiSelect = false;
@@ -243,6 +246,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.groupBox9);
             this.groupBox1.Controls.Add(this.groupBox8);
             this.groupBox1.Controls.Add(this.groupBox7);
             this.groupBox1.Controls.Add(this.groupBox6);
@@ -264,25 +268,38 @@
             this.groupBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox8.Controls.Add(this.createItemBtn);
-            this.groupBox8.Controls.Add(this.barcode);
+            this.groupBox8.Controls.Add(this.search);
             this.groupBox8.Location = new System.Drawing.Point(9, 19);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(559, 47);
             this.groupBox8.TabIndex = 7;
             this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Barcode";
+            this.groupBox8.Text = "Search";
             // 
-            // barcode
+            // createItemBtn
             // 
-            this.barcode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.createItemBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.createItemBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.createItemBtn.Image = ((System.Drawing.Image)(resources.GetObject("createItemBtn.Image")));
+            this.createItemBtn.Location = new System.Drawing.Point(517, 11);
+            this.createItemBtn.Name = "createItemBtn";
+            this.createItemBtn.Size = new System.Drawing.Size(36, 30);
+            this.createItemBtn.TabIndex = 8;
+            this.toolTip.SetToolTip(this.createItemBtn, "Create Item");
+            this.createItemBtn.UseVisualStyleBackColor = true;
+            this.createItemBtn.Click += new System.EventHandler(this.createItemBtn_Click);
+            // 
+            // search
+            // 
+            this.search.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.barcode.Location = new System.Drawing.Point(7, 20);
-            this.barcode.Name = "barcode";
-            this.barcode.Size = new System.Drawing.Size(504, 20);
-            this.barcode.TabIndex = 0;
-            this.barcode.TabStop = false;
-            this.barcode.TextChanged += new System.EventHandler(this.barcode_TextChanged);
-            this.barcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.barcode_KeyDown);
+            this.search.Location = new System.Drawing.Point(7, 20);
+            this.search.Name = "search";
+            this.search.Size = new System.Drawing.Size(504, 20);
+            this.search.TabIndex = 0;
+            this.search.TabStop = false;
+            this.search.TextChanged += new System.EventHandler(this.barcode_TextChanged);
+            this.search.KeyDown += new System.Windows.Forms.KeyEventHandler(this.barcode_KeyDown);
             // 
             // groupBox7
             // 
@@ -310,27 +327,26 @@
             // 
             // groupBox6
             // 
-            this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox6.Controls.Add(this.supplier);
-            this.groupBox6.Location = new System.Drawing.Point(9, 125);
+            this.groupBox6.Location = new System.Drawing.Point(403, 72);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(388, 47);
+            this.groupBox6.Size = new System.Drawing.Size(165, 47);
             this.groupBox6.TabIndex = 5;
             this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Supplier";
+            this.groupBox6.Text = "Available Supplier";
             // 
             // supplier
             // 
             this.supplier.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.supplier.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.supplier.Location = new System.Drawing.Point(7, 19);
+            this.supplier.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.supplier.FormattingEnabled = true;
+            this.supplier.Location = new System.Drawing.Point(6, 17);
             this.supplier.Name = "supplier";
-            this.supplier.ReadOnly = true;
-            this.supplier.Size = new System.Drawing.Size(375, 13);
-            this.supplier.TabIndex = 1;
-            this.supplier.TabStop = false;
+            this.supplier.Size = new System.Drawing.Size(152, 21);
+            this.supplier.TabIndex = 0;
+            this.supplier.SelectedIndexChanged += new System.EventHandler(this.supplier_SelectedIndexChanged);
             // 
             // itemsTable
             // 
@@ -342,28 +358,27 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.itemsTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightBlue;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.itemsTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle31.BackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle31.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle31.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
+            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle31.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.itemsTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle31;
             this.itemsTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.itemsTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column0,
             this.Column2,
-            this.Column1,
-            this.Column7});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.itemsTable.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Column1});
+            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle32.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle32.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle32.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle32.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.itemsTable.DefaultCellStyle = dataGridViewCellStyle32;
             this.itemsTable.EnableHeadersVisualStyles = false;
             this.itemsTable.Location = new System.Drawing.Point(6, 231);
             this.itemsTable.MultiSelect = false;
@@ -400,14 +415,6 @@
             this.Column1.ReadOnly = true;
             this.Column1.Width = 57;
             // 
-            // Column7
-            // 
-            this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column7.HeaderText = "Supplier";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            this.Column7.Width = 76;
-            // 
             // groupBox5
             // 
             this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -419,24 +426,14 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Cost";
             // 
-            // cost
-            // 
-            this.cost.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.cost.Location = new System.Drawing.Point(7, 20);
-            this.cost.Name = "cost";
-            this.cost.ReadOnly = true;
-            this.cost.Size = new System.Drawing.Size(152, 13);
-            this.cost.TabIndex = 0;
-            this.cost.TabStop = false;
-            // 
             // groupBox3
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.itemName);
-            this.groupBox3.Location = new System.Drawing.Point(9, 72);
+            this.groupBox3.Location = new System.Drawing.Point(9, 125);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(559, 47);
+            this.groupBox3.Size = new System.Drawing.Size(388, 47);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Item Name";
@@ -449,7 +446,7 @@
             this.itemName.Location = new System.Drawing.Point(7, 20);
             this.itemName.Name = "itemName";
             this.itemName.ReadOnly = true;
-            this.itemName.Size = new System.Drawing.Size(546, 13);
+            this.itemName.Size = new System.Drawing.Size(375, 13);
             this.itemName.TabIndex = 0;
             this.itemName.TabStop = false;
             // 
@@ -509,18 +506,43 @@
             this.toolTip.ReshowDelay = 100;
             this.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             // 
-            // createItemBtn
+            // groupBox9
             // 
-            this.createItemBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.createItemBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.createItemBtn.Image = ((System.Drawing.Image)(resources.GetObject("createItemBtn.Image")));
-            this.createItemBtn.Location = new System.Drawing.Point(517, 11);
-            this.createItemBtn.Name = "createItemBtn";
-            this.createItemBtn.Size = new System.Drawing.Size(36, 30);
-            this.createItemBtn.TabIndex = 8;
-            this.toolTip.SetToolTip(this.createItemBtn, "Create Item");
-            this.createItemBtn.UseVisualStyleBackColor = true;
-            this.createItemBtn.Click += new System.EventHandler(this.createItemBtn_Click);
+            this.groupBox9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox9.Controls.Add(this.barcode);
+            this.groupBox9.Location = new System.Drawing.Point(9, 72);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(388, 47);
+            this.groupBox9.TabIndex = 8;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Barcode";
+            // 
+            // barcode
+            // 
+            this.barcode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.barcode.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.barcode.Location = new System.Drawing.Point(7, 20);
+            this.barcode.Name = "barcode";
+            this.barcode.ReadOnly = true;
+            this.barcode.Size = new System.Drawing.Size(375, 13);
+            this.barcode.TabIndex = 0;
+            this.barcode.TabStop = false;
+            // 
+            // cost
+            // 
+            this.cost.DecimalPlaces = 2;
+            this.cost.Location = new System.Drawing.Point(7, 17);
+            this.cost.Maximum = new decimal(new int[] {
+            1410065407,
+            2,
+            0,
+            0});
+            this.cost.Name = "cost";
+            this.cost.Size = new System.Drawing.Size(152, 20);
+            this.cost.TabIndex = 0;
+            this.cost.ThousandsSeparator = true;
             // 
             // StockinForm
             // 
@@ -547,14 +569,15 @@
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.itemsTable)).EndInit();
             this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.quantity)).EndInit();
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cost)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -576,14 +599,8 @@
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.TextBox serialNumber;
-        private System.Windows.Forms.TextBox cost;
-        private System.Windows.Forms.TextBox supplier;
         private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.TextBox barcode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column0;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.TextBox search;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn InventorySerialNumber;
@@ -593,5 +610,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.Button createItemBtn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column0;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.ComboBox supplier;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.TextBox barcode;
+        private System.Windows.Forms.NumericUpDown cost;
     }
 }

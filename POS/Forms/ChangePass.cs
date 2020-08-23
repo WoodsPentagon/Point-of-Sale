@@ -12,7 +12,7 @@ namespace POS.Forms
 {
     public partial class ChangePass : Form
     {
-        Login currentUser;
+        //Login currentUser;
         public ChangePass()
         {
             InitializeComponent();
@@ -25,24 +25,25 @@ namespace POS.Forms
         {
             using (var eb = new POSEntities())
             {
-                var user = eb.Logins.FirstOrDefault(x => x.Username == u);
-                currentUser = user;
-                currUser.Text = user.Username;
+                //var user = eb.Logins.FirstOrDefault(x => x.Username == u);
+                //currentUser = user;
+                //currUser.Text = user.Username;
             }
         }
         bool canSave()
         {
-            if (currPassword.Text != currentUser.Password)
-            {
-                MessageBox.Show("Current password is not correct.");
-                return false;
-            }
-            if (newPassword.Text != confirmPassword.Text)
-            {
-                MessageBox.Show("New password and confirm password does not match");
-                return false;
-            }
-            return currPassword.Text != string.Empty || newPassword.Text != string.Empty || confirmPassword.Text != string.Empty;
+            return false;
+            //if (currPassword.Text != currentUser.Password)
+            //{
+            //    MessageBox.Show("Current password is not correct.");
+            //    return false;
+            //}
+            //if (newPassword.Text != confirmPassword.Text)
+            //{
+            //    MessageBox.Show("New password and confirm password does not match");
+            //    return false;
+            //}
+            //return currPassword.Text != string.Empty || newPassword.Text != string.Empty || confirmPassword.Text != string.Empty;
         }
         private void ConfirmBtn_Click(object sender, EventArgs e)
         {
@@ -51,14 +52,14 @@ namespace POS.Forms
 
             using (var eb = new POSEntities())
             {
-                var u = eb.Logins.FirstOrDefault(x => x.Username == currentUser.Username);
-                if (u != null)
-                {
-                    u.Password = newPassword.Text;
-                }
-                eb.SaveChanges();
-                MessageBox.Show("Password successfully changed.");
-                this.Close();
+                //var u = eb.Logins.FirstOrDefault(x => x.Username == currentUser.Username);
+                //if (u != null)
+                //{
+                //    u.Password = newPassword.Text;
+                //}
+                //eb.SaveChanges();
+                //MessageBox.Show("Password successfully changed.");
+                //this.Close();
             }
         }
     }

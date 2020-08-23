@@ -44,12 +44,14 @@
             this.ImageBox = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.barcode = new System.Windows.Forms.TextBox();
-            this.variationsTable = new System.Windows.Forms.DataGridView();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.itemType = new System.Windows.Forms.TextBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.defaultCost = new System.Windows.Forms.TextBox();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.varTable = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox8.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -58,9 +60,10 @@
             this.imageHolder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImageBox)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.variationsTable)).BeginInit();
-            this.groupBox4.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.varTable)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox8
@@ -209,80 +212,6 @@
             this.barcode.Size = new System.Drawing.Size(240, 13);
             this.barcode.TabIndex = 0;
             // 
-            // variationsTable
-            // 
-            this.variationsTable.AllowUserToAddRows = false;
-            this.variationsTable.AllowUserToDeleteRows = false;
-            this.variationsTable.AllowUserToResizeColumns = false;
-            this.variationsTable.AllowUserToResizeRows = false;
-            this.variationsTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.variationsTable.BackgroundColor = System.Drawing.Color.White;
-            this.variationsTable.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.variationsTable.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.variationsTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.variationsTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.variationsTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.variationsTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column7,
-            this.Column1});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.variationsTable.DefaultCellStyle = dataGridViewCellStyle2;
-            this.variationsTable.EnableHeadersVisualStyles = false;
-            this.variationsTable.Location = new System.Drawing.Point(6, 19);
-            this.variationsTable.MultiSelect = false;
-            this.variationsTable.Name = "variationsTable";
-            this.variationsTable.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.variationsTable.RowHeadersVisible = false;
-            this.variationsTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.variationsTable.Size = new System.Drawing.Size(371, 435);
-            this.variationsTable.StandardTab = true;
-            this.variationsTable.TabIndex = 15;
-            this.variationsTable.TabStop = false;
-            this.variationsTable.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.variationsTable_CellEndEdit);
-            this.variationsTable.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.variationsTable_EditingControlShowing);
-            // 
-            // Column7
-            // 
-            this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column7.HeaderText = "Supplier";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column1.HeaderText = "Cost";
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 56;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox4.Controls.Add(this.variationsTable);
-            this.groupBox4.Location = new System.Drawing.Point(540, 12);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(383, 460);
-            this.groupBox4.TabIndex = 11;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Variations";
-            // 
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.itemType);
@@ -305,14 +234,110 @@
             this.itemType.Size = new System.Drawing.Size(241, 13);
             this.itemType.TabIndex = 2;
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.defaultCost);
+            this.groupBox4.Location = new System.Drawing.Point(271, 340);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(263, 40);
+            this.groupBox4.TabIndex = 13;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Item Default Cost";
+            // 
+            // defaultCost
+            // 
+            this.defaultCost.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.defaultCost.BackColor = System.Drawing.SystemColors.Control;
+            this.defaultCost.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.defaultCost.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.defaultCost.Location = new System.Drawing.Point(6, 19);
+            this.defaultCost.Name = "defaultCost";
+            this.defaultCost.Size = new System.Drawing.Size(251, 13);
+            this.defaultCost.TabIndex = 1;
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox9.Controls.Add(this.varTable);
+            this.groupBox9.Location = new System.Drawing.Point(541, 13);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(243, 459);
+            this.groupBox9.TabIndex = 15;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Item Variation";
+            // 
+            // varTable
+            // 
+            this.varTable.AllowUserToAddRows = false;
+            this.varTable.AllowUserToDeleteRows = false;
+            this.varTable.AllowUserToResizeColumns = false;
+            this.varTable.AllowUserToResizeRows = false;
+            this.varTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.varTable.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.varTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.varTable.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.varTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.varTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.varTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.varTable.DefaultCellStyle = dataGridViewCellStyle2;
+            this.varTable.EnableHeadersVisualStyles = false;
+            this.varTable.Location = new System.Drawing.Point(6, 19);
+            this.varTable.MultiSelect = false;
+            this.varTable.Name = "varTable";
+            this.varTable.ReadOnly = true;
+            this.varTable.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.varTable.RowHeadersVisible = false;
+            this.varTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.varTable.Size = new System.Drawing.Size(231, 434);
+            this.varTable.StandardTab = true;
+            this.varTable.TabIndex = 8;
+            this.varTable.TabStop = false;
+            // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column1.HeaderText = "Supplier";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column2.HeaderText = "Cost";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 57;
+            // 
             // ViewItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(935, 484);
+            this.ClientSize = new System.Drawing.Size(796, 484);
+            this.Controls.Add(this.groupBox9);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
-            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox3);
@@ -338,10 +363,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.ImageBox)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.variationsTable)).EndInit();
-            this.groupBox4.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.groupBox9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.varTable)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -359,13 +386,15 @@
         protected System.Windows.Forms.PictureBox ImageBox;
         private System.Windows.Forms.GroupBox groupBox1;
         protected System.Windows.Forms.TextBox barcode;
-        private System.Windows.Forms.DataGridView variationsTable;
-        private System.Windows.Forms.GroupBox groupBox4;
         protected System.Windows.Forms.TextBox sellingPrice;
         protected System.Windows.Forms.TextBox department;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.GroupBox groupBox7;
         protected System.Windows.Forms.TextBox itemType;
+        private System.Windows.Forms.GroupBox groupBox4;
+        protected System.Windows.Forms.TextBox defaultCost;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.DataGridView varTable;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
     }
 }

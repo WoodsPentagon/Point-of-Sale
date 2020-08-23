@@ -25,8 +25,10 @@ namespace POS
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Item> Items { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Supplier> Suppliers { get; set; }
+        public virtual DbSet<ItemVariation> ItemVariations { get; set; }
     }
 }

@@ -32,8 +32,15 @@ namespace POS.Forms
             {
                 itemType.Items.Add((ItemType)i).ToString();
             }
+            itemType.SelectedIndex = 0;
 
+            vSupplier.Items.Clear();
+            using (var p = new POSEntities())
+            {
+                vSupplier.Items.AddRange(p.Suppliers.Select(x => x.Name).ToArray());
+            }
         }
+
         private void barcode_Leave(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(barcode.Text))
@@ -53,23 +60,21 @@ namespace POS.Forms
             }
         }
 
-        public override bool canSave()
-        {
-            if (string.IsNullOrEmpty(barcode.Text) || string.IsNullOrEmpty(name.Text))
-            {
-                MessageBox.Show("Barcode and Item name can never be empty!");
-                return false;
-            }
 
-            return true;
-        }
         public override void save()
         {
             if (!canSave())
             {
                 return;
             }
-
+            using (var p = new POSEntities())
+            {
+                if (p.Items.FirstOrDefault(x => x.Barcode == barcode.Text) != null)
+                {
+                    MessageBox.Show("Barcode already taken.");
+                    return;
+                }
+            }
             switch (MessageBox.Show(this, "Are you sure you want to create this item?", "Please double check.", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
             {
                 //Stay on this form
@@ -89,24 +94,84 @@ namespace POS.Forms
 
             item.Department = string.IsNullOrEmpty(itemDepartment.Text) ? null : itemDepartment.Text;
             item.Type = itemType.SelectedIndex;
-            item.Details = string.IsNullOrEmpty(details.Text)?null:details.Text;
+            item.Details = string.IsNullOrEmpty(details.Text) ? null : details.Text;
+
             if (ImageBox.Image != null)
-            {
                 item.SampleImage = ImageDatabaseConverter.imageToByteArray(ImageBox.Image);
-            }
 
             try
             {
                 using (var p = new POSEntities())
                 {
                     p.Items.Add(item);
+                    ///not a hardware type
+                    if (item.Type != 0)
+                    {
+                        var prod = new Product();
+                        prod.Item = item;
+                        prod.Quantity = 0;
+                        prod.Supplier = null;
+                        prod.Cost = null;
+                        p.Products.Add(prod);
+                    }                   
+
+                    foreach (DataGridViewRow i in variationsTable.Rows)
+                    {
+                        var newVariation = new ItemVariation();
+
+                        newVariation.Item = item;
+                        newVariation.Supplier = p.Suppliers.FirstOrDefault(x => x.Name == (i.Cells[0].Value.ToString()));
+                        newVariation.Cost = vCost.Value;
+                        p.ItemVariations.Add(newVariation);
+                    }
+
                     p.SaveChanges();
                     MessageBox.Show("Item created.");
                 }
             }
-            catch
-            {
+            catch { }
 
+            clearFields();
+            this.Close();
+            InvokeEvent();
+        }
+
+        private void add_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(vSupplier.Text))
+            {
+                return;
+            }
+
+            variationsTable.Rows.Add(vSupplier.Text, vCost.Value);
+            vSupplier.Items.RemoveAt(vSupplier.SelectedIndex);
+        }
+
+        private void variationsTable_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            var supplier = e.Row.Cells[0].Value.ToString();
+            vSupplier.Items.Add(supplier);
+        }
+        void DisableVariations()
+        {
+            variationsTable.Rows.Clear();
+            groupBox9.Enabled = false;
+        }
+        private void itemType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(itemType.SelectedIndex != 0)
+            {
+                DisableVariations();
+            }
+            else
+            {
+                groupBox9.Enabled = true;
+
+                vSupplier.Items.Clear();
+                using (var p = new POSEntities())
+                {
+                    vSupplier.Items.AddRange(p.Suppliers.Select(x => x.Name).ToArray());
+                }
             }
         }
     }
