@@ -63,7 +63,7 @@ namespace POS.Forms
                 supplier.Items.Clear();
                 supplier.IntegralHeight = false;
                
-                supplier.Items.AddRange(p.ItemVariations.Where(x => x.ItemBarcode == item.Barcode).Select(x => x.Supplier.Name).ToArray());
+                supplier.Items.AddRange(p.ItemVariations.Where(x => x.Item.Barcode == item.Barcode).Select(x => x.Supplier.Name).ToArray());
                
             }
             serialNumber.Text = string.Empty;
@@ -101,6 +101,7 @@ namespace POS.Forms
         private void addBtn_Click(object sender, EventArgs e)
         {
             addItem();
+            this.ActiveControl = search;
         }
 
         private void stockinBtn_Click(object sender, EventArgs e)
@@ -296,7 +297,7 @@ namespace POS.Forms
         {
             using(var p = new POSEntities())
             {
-                var v = p.ItemVariations.FirstOrDefault(x => x.ItemBarcode == barcode.Text && x.Supplier.Name == supplier.Text);
+                var v = p.ItemVariations.FirstOrDefault(x => x.Item.Barcode == barcode.Text && x.Supplier.Name == supplier.Text);
                 cost.Value = v.Cost;
             }
         }

@@ -16,10 +16,11 @@
         </EntityType>
         <EntityType Name="Item">
           <Key>
-            <PropertyRef Name="Barcode" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Barcode" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="DefaultCost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="SellingPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Details" Type="nvarchar" MaxLength="500" />
@@ -32,7 +33,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ItemBarcode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
           <Property Name="SupplierId" Type="int" Nullable="false" />
           <Property Name="Cost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
@@ -41,9 +42,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ItemBarcode" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
           <Property Name="SerialNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
           <Property Name="SupplierId" Type="int" />
           <Property Name="Cost" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
@@ -60,10 +61,10 @@
           <End Role="ItemVariation" Type="Self.ItemVariation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Item">
-              <PropertyRef Name="Barcode" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ItemVariation">
-              <PropertyRef Name="ItemBarcode" />
+              <PropertyRef Name="ItemId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -84,10 +85,10 @@
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Item">
-              <PropertyRef Name="Barcode" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Product">
-              <PropertyRef Name="ItemBarcode" />
+              <PropertyRef Name="ItemId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -103,6 +104,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="UpdateItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="BARCODE" Type="nvarchar" Mode="In" />
+          <Parameter Name="NAME" Type="nvarchar" Mode="In" />
+          <Parameter Name="COST" Type="decimal" Mode="In" />
+          <Parameter Name="PRICE" Type="decimal" Mode="In" />
+          <Parameter Name="DETAILS" Type="nvarchar" Mode="In" />
+          <Parameter Name="SAMPIMAGE" Type="image" Mode="In" />
+          <Parameter Name="DEPT" Type="nvarchar" Mode="In" />
+          <Parameter Name="TYPE" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="POSVers2ModelStoreContainer">
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
@@ -139,33 +151,29 @@
           <Property Name="ContactDetails" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
-        <EntityType Name="Item">
+        <EntityType Name="ItemVariation">
           <Key>
-            <PropertyRef Name="Barcode" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Barcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DefaultCost" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="SellingPrice" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="Details" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="SampleImage" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Type" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Products" Relationship="Self.FK_Product_Item" FromRole="Item" ToRole="Product" />
-          <NavigationProperty Name="ItemVariations" Relationship="POSVers2Model.FK_ItemVariation_Item" FromRole="Item" ToRole="ItemVariation" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="SupplierId" Type="Int32" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK_ItemVariation_Supplier" FromRole="ItemVariation" ToRole="Supplier" />
+          <NavigationProperty Name="Item" Relationship="POSVers2Model.FK_ItemVariation_Item" FromRole="ItemVariation" ToRole="Item" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ItemBarcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
           <Property Name="SerialNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
           <Property Name="SupplierId" Type="Int32" />
           <Property Name="Cost" Type="Decimal" Precision="18" Scale="2" />
-          <NavigationProperty Name="Item" Relationship="Self.FK_Product_Item" FromRole="Product" ToRole="Item" />
           <NavigationProperty Name="Supplier" Relationship="Self.FK_Product_Supplier" FromRole="Product" ToRole="Supplier" />
+          <NavigationProperty Name="Item" Relationship="POSVers2Model.FK_Product_Item" FromRole="Product" ToRole="Item" />
         </EntityType>
         <EntityType Name="Supplier">
           <Key>
@@ -174,18 +182,18 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ContactDetails" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ItemVariations" Relationship="Self.FK_ItemVariation_Supplier" FromRole="Supplier" ToRole="ItemVariation" />
           <NavigationProperty Name="Products" Relationship="Self.FK_Product_Supplier" FromRole="Supplier" ToRole="Product" />
-          <NavigationProperty Name="ItemVariations" Relationship="POSVers2Model.FK_ItemVariation_Supplier" FromRole="Supplier" ToRole="ItemVariation" />
         </EntityType>
-        <Association Name="FK_Product_Item">
-          <End Role="Item" Type="Self.Item" Multiplicity="1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+        <Association Name="FK_ItemVariation_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+          <End Role="ItemVariation" Type="Self.ItemVariation" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Item">
-              <PropertyRef Name="Barcode" />
+            <Principal Role="Supplier">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="ItemBarcode" />
+            <Dependent Role="ItemVariation">
+              <PropertyRef Name="SupplierId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -203,63 +211,79 @@
         </Association>
         <EntityContainer Name="POSEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Customers" EntityType="Self.Customer" />
-          <EntitySet Name="Items" EntityType="Self.Item" />
+          <EntitySet Name="ItemVariations" EntityType="Self.ItemVariation" />
           <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
-          <AssociationSet Name="FK_Product_Item" Association="Self.FK_Product_Item">
-            <End Role="Item" EntitySet="Items" />
-            <End Role="Product" EntitySet="Products" />
+          <AssociationSet Name="FK_ItemVariation_Supplier" Association="Self.FK_ItemVariation_Supplier">
+            <End Role="Supplier" EntitySet="Suppliers" />
+            <End Role="ItemVariation" EntitySet="ItemVariations" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_Supplier" Association="Self.FK_Product_Supplier">
             <End Role="Supplier" EntitySet="Suppliers" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
-          <EntitySet Name="ItemVariations" EntityType="POSVers2Model.ItemVariation" />
+          <FunctionImport Name="UpdateItem">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="BARCODE" Mode="In" Type="String" />
+            <Parameter Name="NAME" Mode="In" Type="String" />
+            <Parameter Name="COST" Mode="In" Type="Decimal" />
+            <Parameter Name="PRICE" Mode="In" Type="Decimal" />
+            <Parameter Name="DETAILS" Mode="In" Type="String" />
+            <Parameter Name="SAMPIMAGE" Mode="In" Type="Binary" />
+            <Parameter Name="DEPT" Mode="In" Type="String" />
+            <Parameter Name="TYPE" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Items" EntityType="POSVers2Model.Item" />
           <AssociationSet Name="FK_ItemVariation_Item" Association="POSVers2Model.FK_ItemVariation_Item">
             <End Role="Item" EntitySet="Items" />
             <End Role="ItemVariation" EntitySet="ItemVariations" />
           </AssociationSet>
-          <AssociationSet Name="FK_ItemVariation_Supplier" Association="POSVers2Model.FK_ItemVariation_Supplier">
-            <End Role="Supplier" EntitySet="Suppliers" />
-            <End Role="ItemVariation" EntitySet="ItemVariations" />
+          <AssociationSet Name="FK_Product_Item" Association="POSVers2Model.FK_Product_Item">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="Product" EntitySet="Products" />
           </AssociationSet>
-          </EntityContainer>
-        <EntityType Name="ItemVariation">
+        </EntityContainer>
+        <EntityType Name="Item">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ItemBarcode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SupplierId" Type="Int32" Nullable="false" />
-          <Property Name="Cost" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <NavigationProperty Name="Item" Relationship="POSVers2Model.FK_ItemVariation_Item" FromRole="ItemVariation" ToRole="Item" />
-          <NavigationProperty Name="Supplier" Relationship="POSVers2Model.FK_ItemVariation_Supplier" FromRole="ItemVariation" ToRole="Supplier" />
+          <Property Name="Barcode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DefaultCost" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="SellingPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Details" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="SampleImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ItemVariations" Relationship="POSVers2Model.FK_ItemVariation_Item" FromRole="Item" ToRole="ItemVariation" />
+          <NavigationProperty Name="Products" Relationship="POSVers2Model.FK_Product_Item" FromRole="Item" ToRole="Product" />
         </EntityType>
         <Association Name="FK_ItemVariation_Item">
           <End Type="POSVers2Model.Item" Role="Item" Multiplicity="1" />
           <End Type="POSVers2Model.ItemVariation" Role="ItemVariation" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Item">
-              <PropertyRef Name="Barcode" />
-            </Principal>
-            <Dependent Role="ItemVariation">
-              <PropertyRef Name="ItemBarcode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ItemVariation_Supplier">
-          <End Type="POSVers2Model.Supplier" Role="Supplier" Multiplicity="1" />
-          <End Type="POSVers2Model.ItemVariation" Role="ItemVariation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Supplier">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ItemVariation">
-              <PropertyRef Name="SupplierId" />
+              <PropertyRef Name="ItemId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        </Schema>
+        <Association Name="FK_Product_Item">
+          <End Type="POSVers2Model.Item" Role="Item" Multiplicity="1" />
+          <End Type="POSVers2Model.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -275,17 +299,13 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Items">
-            <EntityTypeMapping TypeName="POSVers2Model.Item">
-              <MappingFragment StoreEntitySet="Item">
-                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="DefaultCost" ColumnName="DefaultCost" />
-                <ScalarProperty Name="SellingPrice" ColumnName="SellingPrice" />
-                <ScalarProperty Name="Details" ColumnName="Details" />
-                <ScalarProperty Name="SampleImage" ColumnName="SampleImage" />
-                <ScalarProperty Name="Department" ColumnName="Department" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
+          <EntitySetMapping Name="ItemVariations">
+            <EntityTypeMapping TypeName="POSVers2Model.ItemVariation">
+              <MappingFragment StoreEntitySet="ItemVariation">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -293,9 +313,9 @@
             <EntityTypeMapping TypeName="POSVers2Model.Product">
               <MappingFragment StoreEntitySet="Product">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ItemBarcode" ColumnName="ItemBarcode" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
                 <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
                 <ScalarProperty Name="Cost" ColumnName="Cost" />
               </MappingFragment>
@@ -310,12 +330,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ItemVariations">
-            <EntityTypeMapping TypeName="POSVers2Model.ItemVariation">
-              <MappingFragment StoreEntitySet="ItemVariation">
-                <ScalarProperty Name="Cost" ColumnName="Cost" />
-                <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
-                <ScalarProperty Name="ItemBarcode" ColumnName="ItemBarcode" />
+          <FunctionImportMapping FunctionImportName="UpdateItem" FunctionName="POSVers2Model.Store.UpdateItem" />
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="POSVers2Model.Item">
+              <MappingFragment StoreEntitySet="Item">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="SampleImage" ColumnName="SampleImage" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="SellingPrice" ColumnName="SellingPrice" />
+                <ScalarProperty Name="DefaultCost" ColumnName="DefaultCost" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

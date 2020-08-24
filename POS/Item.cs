@@ -17,10 +17,11 @@ namespace POS
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Item()
         {
-            this.Products = new HashSet<Product>();
             this.ItemVariations = new HashSet<ItemVariation>();
+            this.Products = new HashSet<Product>();
         }
     
+        public int Id { get; set; }
         public string Barcode { get; set; }
         public string Name { get; set; }
         public decimal DefaultCost { get; set; }
@@ -31,8 +32,8 @@ namespace POS
         public int Type { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ItemVariation> ItemVariations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

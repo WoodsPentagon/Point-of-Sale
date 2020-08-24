@@ -37,7 +37,7 @@ namespace POS.Forms
 
             using (var p = new POSEntities())
             {
-                supplier.Items.AddRange(p.Suppliers.Where(x => x.ItemVariations.FirstOrDefault(y => y.ItemBarcode == target.Barcode) == null).Select(x => x.Name).ToArray());
+                supplier.Items.AddRange(p.Suppliers.Where(x => x.ItemVariations.FirstOrDefault(y => y.Item.Barcode == target.Barcode) == null).Select(x => x.Name).ToArray());
                 foreach (var i in p.ItemVariations.Where(x => x.Item.Barcode == target.Barcode))
                 {
                     varTable.Rows.Add(i.Supplier.Name, i.Cost);
@@ -94,7 +94,7 @@ namespace POS.Forms
             {
                 supplier.Items.Clear();
 
-                foreach (var x in p.Suppliers.Where(x => x.Products.FirstOrDefault(y => y.ItemBarcode == target.Barcode) == null))
+                foreach (var x in p.Suppliers.Where(x => x.Products.FirstOrDefault(y => y.Item.Barcode == target.Barcode) == null))
                     supplier.Items.Add(x.Name);
             }
         }
@@ -107,7 +107,7 @@ namespace POS.Forms
             using (var p = new POSEntities())
             {
 
-                ItemVariation variation = p.ItemVariations.FirstOrDefault(x => x.ItemBarcode == target.Barcode && x.Supplier.Name == s);
+                ItemVariation variation = p.ItemVariations.FirstOrDefault(x => x.Item.Barcode == target.Barcode && x.Supplier.Name == s);
                 p.ItemVariations.Remove(variation);
                 p.SaveChanges();
 

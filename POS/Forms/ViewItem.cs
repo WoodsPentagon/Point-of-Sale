@@ -30,7 +30,7 @@ namespace POS.Forms
 
                 ImageBox.Image = Misc.ImageDatabaseConverter.byteArrayToImage(item.SampleImage);
 
-                foreach(var i in p.ItemVariations.Where(x=>x.ItemBarcode == item.Barcode))
+                foreach(var i in p.ItemVariations.Where(x=>x.Item.Barcode == item.Barcode))
                 {
                     varTable.Rows.Add(i.Supplier.Name,string.Format("₱ {0:n}", i.Cost));
                 }

@@ -67,8 +67,8 @@ namespace POS.Forms
                 using (var p = new POS.POSEntities())
                 {
                     var item = p.Items.FirstOrDefault(x => x.Barcode == target.Barcode);
-                    // item.Barcode = barcode.Text;
-                    item.Name = name.Text;
+                    item.Barcode = barcode.Text;
+                    item.Name = name.Text;                    
                     item.DefaultCost = defaultCost.Value;
                     item.SellingPrice = sellingPrice.Value;
                     item.Department = itemDepartment.Text;
@@ -77,9 +77,10 @@ namespace POS.Forms
                     if (ImageBox.Image != null)
                     {
                         item.SampleImage = Misc.ImageDatabaseConverter.imageToByteArray(ImageBox.Image);
-                    }
+                    }                    
 
                     p.SaveChanges();
+                   
                     InvokeEvent();
                     MessageBox.Show("Successfully saved.");
                     this.Close();

@@ -15,13 +15,13 @@ namespace POS
     public partial class Product
     {
         public int Id { get; set; }
-        public string ItemBarcode { get; set; }
-        public int Quantity { get; set; }
+        public int ItemId { get; set; }
         public string SerialNumber { get; set; }
+        public int Quantity { get; set; }
         public Nullable<int> SupplierId { get; set; }
         public Nullable<decimal> Cost { get; set; }
     
-        public virtual Item Item { get; set; }
         public virtual Supplier Supplier { get; set; }
+        public virtual Item Item { get; set; }
     }
 }

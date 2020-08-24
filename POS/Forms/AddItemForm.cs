@@ -99,37 +99,38 @@ namespace POS.Forms
             if (ImageBox.Image != null)
                 item.SampleImage = ImageDatabaseConverter.imageToByteArray(ImageBox.Image);
 
-            try
+            //try
+            //{
+            using (var p = new POSEntities())
             {
-                using (var p = new POSEntities())
+                p.Items.Add(item);
+                ///not a hardware type
+                if (item.Type != 0)
                 {
-                    p.Items.Add(item);
-                    ///not a hardware type
-                    if (item.Type != 0)
-                    {
-                        var prod = new Product();
-                        prod.Item = item;
-                        prod.Quantity = 0;
-                        prod.Supplier = null;
-                        prod.Cost = null;
-                        p.Products.Add(prod);
-                    }                   
-
-                    foreach (DataGridViewRow i in variationsTable.Rows)
-                    {
-                        var newVariation = new ItemVariation();
-
-                        newVariation.Item = item;
-                        newVariation.Supplier = p.Suppliers.FirstOrDefault(x => x.Name == (i.Cells[0].Value.ToString()));
-                        newVariation.Cost = vCost.Value;
-                        p.ItemVariations.Add(newVariation);
-                    }
-
-                    p.SaveChanges();
-                    MessageBox.Show("Item created.");
+                    var prod = new Product();
+                    prod.Item = item;
+                    prod.Quantity = 0;
+                    prod.Supplier = null;
+                    prod.Cost = null;
+                    p.Products.Add(prod);
                 }
+
+                foreach (DataGridViewRow i in variationsTable.Rows)
+                {
+                    var newVariation = new ItemVariation();
+
+                    newVariation.Item = item;
+                    var supplierName = i.Cells[0].Value.ToString();
+                    newVariation.Supplier = p.Suppliers.FirstOrDefault(x => x.Name == supplierName);
+                    newVariation.Cost = vCost.Value;
+                    p.ItemVariations.Add(newVariation);
+                }
+
+                p.SaveChanges();
+                MessageBox.Show("Item created.");
             }
-            catch { }
+            //}
+            //catch { }
 
             clearFields();
             this.Close();
@@ -159,7 +160,7 @@ namespace POS.Forms
         }
         private void itemType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(itemType.SelectedIndex != 0)
+            if (itemType.SelectedIndex != 0)
             {
                 DisableVariations();
             }

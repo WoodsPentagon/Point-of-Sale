@@ -4,17 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bf35ca8b6272474790b3e7647b1502e2" Name="Diagram1">
-        <EntityTypeShape EntityType="POSVers2Model.Customer" Width="1.5" PointX="5" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="POSVers2Model.Item" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="POSVers2Model.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="POSVers2Model.Supplier" Width="1.5" PointX="3.125" PointY="5.375" IsExpanded="true" />
-        <AssociationConnector Association="POSVers2Model.FK_Product_Item" ManuallyRouted="false" />
+      <Diagram DiagramId="8a5f55d01bb442b6ad36bd1622c18f7a" Name="Diagram1">
+        <EntityTypeShape EntityType="POSVers2Model.Customer" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="POSVers2Model.ItemVariation" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="POSVers2Model.Product" Width="1.5" PointX="6" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="POSVers2Model.Supplier" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <AssociationConnector Association="POSVers2Model.FK_ItemVariation_Supplier" ManuallyRouted="false" />
         <AssociationConnector Association="POSVers2Model.FK_Product_Supplier" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="POSVers2Model.ItemVariation" Width="1.5" PointX="1.125" PointY="4.75" />
+        <EntityTypeShape EntityType="POSVers2Model.Item" Width="1.5" PointX="3.375" PointY="7" />
         <AssociationConnector Association="POSVers2Model.FK_ItemVariation_Item" />
-        <AssociationConnector Association="POSVers2Model.FK_ItemVariation_Supplier" />
-        </Diagram>
+        <AssociationConnector Association="POSVers2Model.FK_Product_Item" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

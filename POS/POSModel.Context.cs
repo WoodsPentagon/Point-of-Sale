@@ -12,6 +12,8 @@ namespace POS
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class POSEntities : DbContext
     {
@@ -26,9 +28,50 @@ namespace POS
         }
     
         public virtual DbSet<Customer> Customers { get; set; }
-        public virtual DbSet<Item> Items { get; set; }
+        public virtual DbSet<ItemVariation> ItemVariations { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Supplier> Suppliers { get; set; }
-        public virtual DbSet<ItemVariation> ItemVariations { get; set; }
+        public virtual DbSet<Item> Items { get; set; }
+    
+        public virtual int UpdateItem(Nullable<int> iD, string bARCODE, string nAME, Nullable<decimal> cOST, Nullable<decimal> pRICE, string dETAILS, byte[] sAMPIMAGE, string dEPT, Nullable<int> tYPE)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            var bARCODEParameter = bARCODE != null ?
+                new ObjectParameter("BARCODE", bARCODE) :
+                new ObjectParameter("BARCODE", typeof(string));
+    
+            var nAMEParameter = nAME != null ?
+                new ObjectParameter("NAME", nAME) :
+                new ObjectParameter("NAME", typeof(string));
+    
+            var cOSTParameter = cOST.HasValue ?
+                new ObjectParameter("COST", cOST) :
+                new ObjectParameter("COST", typeof(decimal));
+    
+            var pRICEParameter = pRICE.HasValue ?
+                new ObjectParameter("PRICE", pRICE) :
+                new ObjectParameter("PRICE", typeof(decimal));
+    
+            var dETAILSParameter = dETAILS != null ?
+                new ObjectParameter("DETAILS", dETAILS) :
+                new ObjectParameter("DETAILS", typeof(string));
+    
+            var sAMPIMAGEParameter = sAMPIMAGE != null ?
+                new ObjectParameter("SAMPIMAGE", sAMPIMAGE) :
+                new ObjectParameter("SAMPIMAGE", typeof(byte[]));
+    
+            var dEPTParameter = dEPT != null ?
+                new ObjectParameter("DEPT", dEPT) :
+                new ObjectParameter("DEPT", typeof(string));
+    
+            var tYPEParameter = tYPE.HasValue ?
+                new ObjectParameter("TYPE", tYPE) :
+                new ObjectParameter("TYPE", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateItem", iDParameter, bARCODEParameter, nAMEParameter, cOSTParameter, pRICEParameter, dETAILSParameter, sAMPIMAGEParameter, dEPTParameter, tYPEParameter);
+        }
     }
 }

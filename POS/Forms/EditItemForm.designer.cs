@@ -37,7 +37,6 @@
             // 
             // barcode
             // 
-            this.barcode.ReadOnly = true;
             this.barcode.TabStop = false;
             // 
             // EditItemForm
