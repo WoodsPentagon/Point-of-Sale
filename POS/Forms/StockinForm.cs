@@ -184,6 +184,11 @@ namespace POS.Forms
         void addItem()
         {
             ///check if the item to be added has serial
+            if (string.IsNullOrEmpty(supplier.Text))
+            {
+                MessageBox.Show("Supplier is required in stockin.");
+                return;
+            }
             if (!string.IsNullOrEmpty(serialNumber.Text))
             {
                 if (serialAlreadyTaken())
@@ -205,7 +210,7 @@ namespace POS.Forms
             }
             ///else, add the item
             Decimal totalCost = quantity.Value * Convert.ToDecimal(cost.Text);
-            inventoryTable.Rows.Add(search.Text, serialNumber.Text, itemName.Text, quantity.Value, cost.Text, totalCost.ToString(), supplier.Text);
+            inventoryTable.Rows.Add(barcode.Text, serialNumber.Text, itemName.Text, quantity.Value, cost.Text, totalCost.ToString(), supplier.Text);
 
             serialNumber.Text = string.Empty;
         }
