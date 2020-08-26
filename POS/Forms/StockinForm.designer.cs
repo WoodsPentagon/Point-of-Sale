@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StockinForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.removeBtn = new System.Windows.Forms.Button();
             this.stockinBtn = new System.Windows.Forms.Button();
-            this.inventoryTable = new System.Windows.Forms.DataGridView();
+            this.toStockTable = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InventorySerialNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,7 +50,6 @@
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.barcode = new System.Windows.Forms.TextBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.createItemBtn = new System.Windows.Forms.Button();
             this.search = new System.Windows.Forms.TextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.serialNumber = new System.Windows.Forms.TextBox();
@@ -68,8 +67,10 @@
             this.quantity = new System.Windows.Forms.NumericUpDown();
             this.addBtn = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.button1 = new System.Windows.Forms.Button();
+            this.searchBtn = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.inventoryTable)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toStockTable)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox9.SuspendLayout();
@@ -88,7 +89,7 @@
             // 
             this.groupBox2.Controls.Add(this.removeBtn);
             this.groupBox2.Controls.Add(this.stockinBtn);
-            this.groupBox2.Controls.Add(this.inventoryTable);
+            this.groupBox2.Controls.Add(this.toStockTable);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(583, 3);
             this.groupBox2.Name = "groupBox2";
@@ -122,26 +123,26 @@
             this.stockinBtn.UseVisualStyleBackColor = true;
             this.stockinBtn.Click += new System.EventHandler(this.stockinBtn_Click);
             // 
-            // inventoryTable
+            // toStockTable
             // 
-            this.inventoryTable.AllowUserToAddRows = false;
-            this.inventoryTable.AllowUserToDeleteRows = false;
-            this.inventoryTable.AllowUserToResizeColumns = false;
-            this.inventoryTable.AllowUserToResizeRows = false;
-            this.inventoryTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.toStockTable.AllowUserToAddRows = false;
+            this.toStockTable.AllowUserToDeleteRows = false;
+            this.toStockTable.AllowUserToResizeColumns = false;
+            this.toStockTable.AllowUserToResizeRows = false;
+            this.toStockTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.inventoryTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.inventoryTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.inventoryTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.inventoryTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.toStockTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle41.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle41.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle41.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle41.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
+            dataGridViewCellStyle41.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle41.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.toStockTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle41;
+            this.toStockTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.toStockTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.InventorySerialNumber,
             this.dataGridViewTextBoxColumn2,
@@ -149,26 +150,26 @@
             this.Column3,
             this.Column5,
             this.Column6});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.inventoryTable.DefaultCellStyle = dataGridViewCellStyle2;
-            this.inventoryTable.EnableHeadersVisualStyles = false;
-            this.inventoryTable.Location = new System.Drawing.Point(6, 48);
-            this.inventoryTable.MultiSelect = false;
-            this.inventoryTable.Name = "inventoryTable";
-            this.inventoryTable.ReadOnly = true;
-            this.inventoryTable.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.inventoryTable.RowHeadersVisible = false;
-            this.inventoryTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.inventoryTable.Size = new System.Drawing.Size(562, 420);
-            this.inventoryTable.StandardTab = true;
-            this.inventoryTable.TabIndex = 4;
-            this.inventoryTable.TabStop = false;
+            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle42.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle42.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle42.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle42.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle42.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle42.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.toStockTable.DefaultCellStyle = dataGridViewCellStyle42;
+            this.toStockTable.EnableHeadersVisualStyles = false;
+            this.toStockTable.Location = new System.Drawing.Point(6, 48);
+            this.toStockTable.MultiSelect = false;
+            this.toStockTable.Name = "toStockTable";
+            this.toStockTable.ReadOnly = true;
+            this.toStockTable.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.toStockTable.RowHeadersVisible = false;
+            this.toStockTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.toStockTable.Size = new System.Drawing.Size(562, 420);
+            this.toStockTable.StandardTab = true;
+            this.toStockTable.TabIndex = 4;
+            this.toStockTable.TabStop = false;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -290,7 +291,8 @@
             // 
             this.groupBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox8.Controls.Add(this.createItemBtn);
+            this.groupBox8.Controls.Add(this.searchBtn);
+            this.groupBox8.Controls.Add(this.button1);
             this.groupBox8.Controls.Add(this.search);
             this.groupBox8.Location = new System.Drawing.Point(9, 19);
             this.groupBox8.Name = "groupBox8";
@@ -299,28 +301,17 @@
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Search";
             // 
-            // createItemBtn
-            // 
-            this.createItemBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.createItemBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.createItemBtn.Image = ((System.Drawing.Image)(resources.GetObject("createItemBtn.Image")));
-            this.createItemBtn.Location = new System.Drawing.Point(517, 11);
-            this.createItemBtn.Name = "createItemBtn";
-            this.createItemBtn.Size = new System.Drawing.Size(36, 30);
-            this.createItemBtn.TabIndex = 8;
-            this.toolTip.SetToolTip(this.createItemBtn, "Create Item");
-            this.createItemBtn.UseVisualStyleBackColor = true;
-            this.createItemBtn.Click += new System.EventHandler(this.createItemBtn_Click);
-            // 
             // search
             // 
             this.search.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.search.Location = new System.Drawing.Point(7, 20);
+            this.search.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.search.Location = new System.Drawing.Point(7, 16);
             this.search.Name = "search";
-            this.search.Size = new System.Drawing.Size(504, 20);
+            this.search.Size = new System.Drawing.Size(428, 22);
             this.search.TabIndex = 0;
             this.search.TabStop = false;
+            this.toolTip.SetToolTip(this.search, "(ctrl+F) to focus on search bar");
             this.search.TextChanged += new System.EventHandler(this.barcode_TextChanged);
             this.search.KeyDown += new System.Windows.Forms.KeyEventHandler(this.barcode_KeyDown);
             // 
@@ -346,6 +337,7 @@
             this.serialNumber.Size = new System.Drawing.Size(375, 20);
             this.serialNumber.TabIndex = 0;
             this.serialNumber.TabStop = false;
+            this.toolTip.SetToolTip(this.serialNumber, "(F2) to focus on Serial Field");
             this.serialNumber.TextChanged += new System.EventHandler(this.serialNumber_TextChanged);
             // 
             // groupBox6
@@ -363,13 +355,15 @@
             // 
             this.supplier.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.supplier.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.supplier.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.supplier.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.supplier.FormattingEnabled = true;
             this.supplier.Location = new System.Drawing.Point(6, 17);
             this.supplier.Name = "supplier";
             this.supplier.Size = new System.Drawing.Size(152, 21);
             this.supplier.TabIndex = 0;
             this.supplier.SelectedIndexChanged += new System.EventHandler(this.supplier_SelectedIndexChanged);
+            this.supplier.Leave += new System.EventHandler(this.supplier_Leave);
             // 
             // itemsTable
             // 
@@ -381,27 +375,27 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.itemsTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightBlue;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.itemsTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle43.BackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle43.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle43.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle43.SelectionBackColor = System.Drawing.SystemColors.InactiveCaption;
+            dataGridViewCellStyle43.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle43.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.itemsTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle43;
             this.itemsTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.itemsTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column0,
             this.Column2,
             this.Column1});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.itemsTable.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle44.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle44.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle44.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle44.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle44.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle44.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.itemsTable.DefaultCellStyle = dataGridViewCellStyle44;
             this.itemsTable.EnableHeadersVisualStyles = false;
             this.itemsTable.Location = new System.Drawing.Point(6, 231);
             this.itemsTable.MultiSelect = false;
@@ -517,12 +511,12 @@
             this.quantity.Size = new System.Drawing.Size(152, 20);
             this.quantity.TabIndex = 0;
             this.quantity.TabStop = false;
+            this.toolTip.SetToolTip(this.quantity, "(F3) to focus on Quantity Field");
             this.quantity.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.quantity.ValueChanged += new System.EventHandler(this.quantity_ValueChanged);
             // 
             // addBtn
             // 
@@ -533,6 +527,7 @@
             this.addBtn.TabIndex = 3;
             this.addBtn.TabStop = false;
             this.addBtn.Text = "Add";
+            this.toolTip.SetToolTip(this.addBtn, "(shift+Enter)  to Add");
             this.addBtn.UseVisualStyleBackColor = true;
             this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
             // 
@@ -542,6 +537,34 @@
             this.toolTip.InitialDelay = 300;
             this.toolTip.ReshowDelay = 100;
             this.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(478, 16);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 22);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Create Item";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.createItemBtn_Click);
+            // 
+            // searchBtn
+            // 
+            this.searchBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchBtn.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.searchBtn.FlatAppearance.BorderSize = 0;
+            this.searchBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.searchBtn.Image = ((System.Drawing.Image)(resources.GetObject("searchBtn.Image")));
+            this.searchBtn.Location = new System.Drawing.Point(435, 16);
+            this.searchBtn.Name = "searchBtn";
+            this.searchBtn.Size = new System.Drawing.Size(37, 22);
+            this.searchBtn.TabIndex = 2;
+            this.searchBtn.UseVisualStyleBackColor = false;
+            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
             // 
             // StockinForm
             // 
@@ -560,7 +583,7 @@
             this.Load += new System.EventHandler(this.StockinForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.StockinForm_KeyDown);
             this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.inventoryTable)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toStockTable)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
@@ -587,7 +610,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button addBtn;
         private System.Windows.Forms.Button stockinBtn;
-        private System.Windows.Forms.DataGridView inventoryTable;
+        private System.Windows.Forms.DataGridView toStockTable;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox itemName;
         private System.Windows.Forms.GroupBox groupBox4;
@@ -608,7 +631,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.Button createItemBtn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column0;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
@@ -616,5 +638,7 @@
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.TextBox barcode;
         private System.Windows.Forms.NumericUpDown cost;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button searchBtn;
     }
 }

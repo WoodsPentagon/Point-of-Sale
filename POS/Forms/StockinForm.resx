@@ -139,15 +139,14 @@
     <value>True</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="createItemBtn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="searchBtn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAABGdBTUEAALGPC/xhBQAAATdJREFUSEvt
-        1D8vBEEch/ERKiovRCsKRKfQEQoKnbfgLdCIRqGWICFEiEbCW/ACFNQSkej8fx6ZkXG5WbuXnMZ9k8/N
-        Zmb2N7uzext6aZpzPHTRGcLHH/j6ufegC7Fub5Ha+eeL9GM4tnVSe5E+zOMKr3C+7SXm4HgptRYZwgmc
-        U3KMQbTLj0WesBItIOUQecFrbMc2799HyjJSLes6Hl7iQWIRM4O8X+swtq1j0zA7yPufEZawlhmB8cOZ
-        T1bVIqcwY8jrLaKYR3iyW7MaTcHYpr60dX5xG2UA6Qp37aiI4857R91X+ztemSffwOekWRjb1Oe486r+
-        BsUcId1NUvVMDtA442gtVFrErRpFR3E78mK3uIht3r+FjuMLsAmvNC+a2L+Bxg+8XSaxhzu8wTvxrZrA
-        LwnhE5C20Oe+rr1dAAAAAElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAABGdBTUEAALGPC/xhBQAAARFJREFUOE+V
+        0r1LAmEAx/ErFcIG54YkHCJCaHATiaKpqamgLShprKFJlyRbQmgp6C9oKBqCoFoDh8AhWySdTIQGw+YW
+        +/7uhbv0TrgvfPB5Hnju8V4MTxHs4BFNvOECCxjbDF5RxSYyyKKEPg7gWxTaWMGkFoaaRxu66Ei7eMGE
+        OfNvGV3EzJmnZ2xj1pwF944Va+jWwhJOMaWFgK6xZw3d6sihjH0tBPQA/cN/XeEEaXxjHcNN4wdz5szT
+        InpIYQNfeEIecahz3FnD0Q7xCeeBJOxfnXiJX5xhFb5toYMabnAP3cYtdPLAVoRv+mB0ut69Hk4SSu/Z
+        2SwFhOoY3gscIVT61p3NH1oIm+65YRjG2h8ufTbWyYSYdQAAAABJRU5ErkJggg==
 </value>
   </data>
   <metadata name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -161,6 +160,18 @@
   </metadata>
   <metadata name="Column1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
+  </metadata>
+  <metadata name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>52</value>

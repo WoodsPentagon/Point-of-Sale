@@ -13,6 +13,8 @@ namespace POS.Forms
 {
     public partial class AddProductForm : Form
     {
+        bool changesMade = false;
+        public event EventHandler Onsave;
         Item target;
 
         public AddProductForm()
@@ -27,6 +29,12 @@ namespace POS.Forms
             {
                 target = p.Items.FirstOrDefault(x => x.Barcode == barcode);
             }
+            this.Disposed += AddProductForm_Disposed;
+        }
+
+        private void AddProductForm_Disposed(object sender, EventArgs e)
+        {
+            Onsave?.Invoke(this, null);
         }
 
         private void AddProductForm_Load(object sender, EventArgs e)
@@ -69,6 +77,7 @@ namespace POS.Forms
 
                 p.ItemVariations.Add(newVariation);
                 p.SaveChanges();
+                changesMade = true;
 
             }
             varTable.Rows.Add(supplier.Text, cost.Value);
@@ -112,6 +121,7 @@ namespace POS.Forms
                 p.SaveChanges();
 
                 supplier.Items.Add(s);
+                changesMade = true;
             }
         }
     }

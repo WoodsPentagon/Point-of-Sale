@@ -75,8 +75,11 @@ namespace POS.Forms
                     var itemDeptGroup = p.Items.GroupBy(x => x.Department);
                     foreach (var i in itemDeptGroup)
                     {
-                        itemDepartment.AutoCompleteCustomSource.Add(i.Key);
-                        itemDepartment.Items.Add(i.Key);
+                        if (i.Key != null)
+                        {
+                            itemDepartment.AutoCompleteCustomSource.Add(i.Key);
+                            itemDepartment.Items.Add(i.Key);
+                        }
                     }
 
                 }

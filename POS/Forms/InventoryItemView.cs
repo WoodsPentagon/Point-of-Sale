@@ -41,9 +41,63 @@ namespace POS.Forms
 
                     Console.WriteLine(i.SupplierId);
 
-                    invTable.Rows.Add(counter, i.SerialNumber ?? "NONE", i.Quantity == 0?"Infinite":i.Quantity.ToString(), (i.Supplier?.Name) ?? "NOT SPECIFIED");
+                    invTable.Rows.Add(counter, i.SerialNumber, i.Quantity == 0?"Infinite":i.Quantity.ToString(), (i.Supplier?.Name) ?? "NOT SPECIFIED");
                 }
             }
+        }
+
+        Product target;
+        private void invTable_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            //if (!UserManager.instance.currentLogin.CanEditProduct ?? false)
+            //{
+            //    e.Cancel = true;
+            //    return;
+            //}
+            if (e.ColumnIndex != 1)
+            {
+                return;
+            }
+            var dgt = sender as DataGridView;
+            var serial = dgt.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString();
+            var quantity = Convert.ToInt32(dgt.Rows[e.RowIndex].Cells[2].Value.ToString());
+            if (string.IsNullOrEmpty(serial) && quantity > 1)
+            {
+                MessageBox.Show("Thes serial cannot be edited");
+                e.Cancel = true;
+                return;
+            }
+
+            using (var p = new POSEntities())
+            {
+                target = p.Products.FirstOrDefault(x => x.SerialNumber == serial);
+
+            }
+        }
+
+        private void invTable_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            var dgt = sender as DataGridView;
+            if (dgt.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString() == target.SerialNumber)
+            {
+                return;
+            }
+            using (var p = new POSEntities())
+            {
+                if (MessageBox.Show("Are you sure you want to save new Serial?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                {
+                    dgt.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = target.SerialNumber;
+                }
+                else
+                {
+                    var t = p.Products.FirstOrDefault(x => x.SerialNumber == target.SerialNumber);
+                    t.SerialNumber = dgt.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString();
+                    p.SaveChanges();
+                    //OnSave?.Invoke(this, null);
+                    MessageBox.Show("Serial successfully updated");
+                }
+            }
+
         }
     }
 }
