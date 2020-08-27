@@ -70,7 +70,7 @@ namespace POS.Forms
 
             }
             serialNumber.Text = string.Empty;
-            this.ActiveControl = serialNumber;
+            //this.ActiveControl = serialNumber;
         }
 
         bool alreadyInTable(string id, string supplier, out int index)
