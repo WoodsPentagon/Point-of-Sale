@@ -222,6 +222,18 @@
     <Compile Include="UserControls\ReportUC.designer.cs">
       <DependentUpon>ReportUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\SearchControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\SearchControl.Designer.cs">
+      <DependentUpon>SearchControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Try.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControls\Try.Designer.cs">
+      <DependentUpon>Try.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Forms\AddItemForm.resx">
       <DependentUpon>AddItemForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -279,6 +291,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ReportUC.resx">
       <DependentUpon>ReportUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\SearchControl.resx">
+      <DependentUpon>SearchControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\Try.resx">
+      <DependentUpon>Try.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <EntityDeploy Include="POSModel.edmx">

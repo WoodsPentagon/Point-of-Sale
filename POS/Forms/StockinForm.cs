@@ -37,7 +37,6 @@ namespace POS.Forms
         private void StockinForm_Load(object sender, EventArgs e)
         {
             SetTable();
-
             setAutoComplete();
         }
 
@@ -99,7 +98,7 @@ namespace POS.Forms
         }
         private void addBtn_Click(object sender, EventArgs e)
         {
-            this.ActiveControl = search;
+            //this.ActiveControl = search;
             addItem();
         }
 
@@ -141,6 +140,15 @@ namespace POS.Forms
 
         private void stockinBtn_Click(object sender, EventArgs e)
         {
+            if(toStockTable.RowCount == 0)
+            {
+                MessageBox.Show("List is empty.");
+                return;
+            }
+            if(MessageBox.Show("Are you sure you want to continue?","Items will be added in your inventory.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            {
+                return;
+            }
             using (var p = new POSEntities())
             {
 
@@ -239,6 +247,8 @@ namespace POS.Forms
         {
             if (toStockTable.RowCount == 0)
                 return;
+            if (MessageBox.Show("Are you sure you want to remove an item on the List of items to be stocked?","", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
             int index = toStockTable.CurrentCell.RowIndex;
             toStockTable.Rows.RemoveAt(index);
         }
@@ -254,29 +264,18 @@ namespace POS.Forms
             quantity.Enabled = true;
         }
 
-        private void barcode_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (search.Text == string.Empty)
-                return;
 
-            if (e.KeyCode == Keys.Enter)
-            {
-                searchBtn.PerformClick();
-            }
-        }
-
-        private void barcode_TextChanged(object sender, EventArgs e)
-        {
-            if (search.TextLength <= 0)
-                SetTable();
-        }
 
         private void StockinForm_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Control && e.KeyCode == Keys.F)
-                this.ActiveControl = search;
             if (e.Shift && e.KeyCode == Keys.Enter)
                 addBtn.PerformClick();
+
+            if (e.Control && e.KeyCode == Keys.Enter)
+                stockinBtn.PerformClick();
+
+            if (e.Control && e.KeyCode == Keys.F)
+                this.ActiveControl = searchControl;
 
             if (e.KeyCode == Keys.F2)
                 this.ActiveControl = serialNumber;
@@ -293,14 +292,7 @@ namespace POS.Forms
                 additem.ShowDialog();
             }
         }
-        void setAutoComplete()
-        {
-            search.AutoCompleteCustomSource.Clear();
-            using (var p = new POSEntities())
-            {
-                search.AutoCompleteCustomSource.AddRange(p.Products.Where(x => x.Item.Type == 0).Select(x => x.Item.Name).ToArray());
-            }
-        }
+
         private void Additem_OnSave(object sender, EventArgs e)
         {
             SetTable();
@@ -316,33 +308,59 @@ namespace POS.Forms
             }
         }
 
-        private void searchBtn_Click(object sender, EventArgs e)
+        ////private void barcode_KeyDown(object sender, KeyEventArgs e)
+        ////{
+        ////    //if (search.Text == string.Empty)
+        ////    //    return;
+
+        ////    //if (e.KeyCode == Keys.Enter)
+        ////    //{
+        ////    //    searchBtn.PerformClick();
+        ////    //}
+        ////}
+
+        ////private void barcode_TextChanged(object sender, EventArgs e)
+        ////{
+        ////    //if (search.TextLength <= 0)
+        ////    //    SetTable();
+        ////}
+
+        ////private void searchBtn_Click(object sender, EventArgs e)
+        ////{
+        ////    if (string.Equals(search.Text, string.Empty))
+        ////    {
+        ////        return;
+        ////    }
+        ////    itemsTable.Rows.Clear();
+        ////    using (var p = new POSEntities())
+        ////    {
+        ////        var items = p.Items.Where(x => x.Barcode == search.Text && x.Type == 0);
+        ////        if (items.Count() == 0)
+        ////        {
+        ////            items = p.Items.Where(x => x.Name.Contains(search.Text) && x.Type == 0);
+        ////        }
+        ////        if (items.Count() == 0)
+        ////        {
+        ////            if (MessageBox.Show("Would you like to Create an item?", "Entry not found.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.OK)
+        ////            {
+        ////                createBtn.PerformClick();
+        ////                return;
+        ////            }
+        ////        }
+        ////        foreach (var i in items)
+        ////        {
+        ////            itemsTable.Rows.Add(i.Barcode, i.Name, i.DefaultCost);
+        ////        }
+        ////    }
+        ////}
+
+        void setAutoComplete()
         {
-            if (string.Equals(search.Text, string.Empty))
-            {
-                return;
-            }
-            itemsTable.Rows.Clear();
             using (var p = new POSEntities())
             {
-                var items = p.Items.Where(x => x.Barcode == search.Text && x.Type == 0);
-                if (items.Count() == 0)
-                {
-                    items = p.Items.Where(x => x.Name.Contains(search.Text) && x.Type == 0);
-                }
-                if (items.Count() == 0)
-                {
-                    if (MessageBox.Show("Would you like to Create an item?","Entry not found.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.OK)
-                    {
-                        createBtn.PerformClick();
-                        return;
-                    }
-                }
-                foreach (var i in items)
-                {
-                    itemsTable.Rows.Add(i.Barcode, i.Name, i.DefaultCost);
-                }
+                searchControl.SetAutoComplete(p.Items.Where(x => x.Type == 0).Select(x => x.Name).ToArray());
             }
+
         }
 
         private void supplier_Leave(object sender, EventArgs e)
@@ -381,6 +399,39 @@ namespace POS.Forms
                 supplier.Items.AddRange(s);
                 supplier.AutoCompleteCustomSource.AddRange(s);
             }
+        }
+
+        private void searchControl_OnSearch(object sender, string e)
+        {
+
+            using (var p = new POSEntities())
+            {
+                var items = p.Items.Where(x => x.Barcode == e && x.Type == 0);
+                if (items.Count() == 0)
+                {
+                    items = p.Items.Where(x => x.Name.Contains(e) && x.Type == 0);
+                }
+                if (items.Count() == 0)
+                {
+                    if (MessageBox.Show("Would you like to Create an item?", "Entry not found.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.OK)
+                    {
+                        createBtn.PerformClick();
+                    }
+                    return;
+                }
+
+                itemsTable.Rows.Clear();
+                foreach (var i in items)
+                {
+                    itemsTable.Rows.Add(i.Barcode, i.Name, i.DefaultCost);
+                }
+            }
+
+        }
+
+        private void searchControl_OnTextEmpty(object sender, EventArgs e)
+        {
+            SetTable();
         }
     }
 }
