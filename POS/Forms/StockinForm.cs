@@ -215,7 +215,7 @@ namespace POS.Forms
             }
             for (int i = 0; i < toStockTable.RowCount; i++)
             {
-                if (serialNumber.Text == toStockTable.Rows[i].Cells[1].Value.ToString())
+                if (serialNumber.Text == toStockTable.Rows[i].Cells[1].Value?.ToString())
                 {
                     MessageBox.Show("Serial number already on the list.");
                     return true;
