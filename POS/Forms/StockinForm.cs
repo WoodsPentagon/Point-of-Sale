@@ -26,22 +26,23 @@ namespace POS.Forms
         {
             itemsTable.Rows.Clear();
             using (var p = new POSEntities())
-            {               
+            {
                 foreach (var i in p.Items.Where(x => x.Type == (int)ItemType.Hardware))
                 {
                     itemsTable.Rows.Add(i.Barcode, i.Name, i.DefaultCost);
                 }
-            }           
+            }
         }
         private void StockinForm_Load(object sender, EventArgs e)
         {
-            SetTable();           
+            SetTable();
         }
 
         private void itemsTable_SelectionChanged(object sender, EventArgs e)
         {
             if (itemsTable.DataGridViewCurrentRowIndex() == -1)
                 return;
+            supplier.ResetText();
             using (var p = new POSEntities())
             {
 
@@ -54,11 +55,11 @@ namespace POS.Forms
 
                 barcode.Text = item.Barcode;
                 itemName.Text = item.Name;
+
                 cost.Value = item.DefaultCost;
 
                 supplier.Items.Clear();
                 supplier.IntegralHeight = false;
-
 
                 var s = p.ItemVariations.Where(x => x.Item.Barcode == item.Barcode).Select(x => x.Supplier.Name).ToArray();
                 supplier.Items.AddRange(s);
@@ -318,7 +319,7 @@ namespace POS.Forms
                 {
                     items = p.Items.Where(x => x.Name.Contains(search.Text) && x.Type == 0);
                 }
-                if(items.Count()==0)
+                if (items.Count() == 0)
                 {
                     MessageBox.Show("Entry not found.");
                     return;
