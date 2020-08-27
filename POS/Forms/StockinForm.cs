@@ -32,10 +32,13 @@ namespace POS.Forms
                     itemsTable.Rows.Add(i.Barcode, i.Name, i.DefaultCost);
                 }
             }
+            //setAutoComplete();
         }
         private void StockinForm_Load(object sender, EventArgs e)
         {
             SetTable();
+
+            setAutoComplete();
         }
 
         private void itemsTable_SelectionChanged(object sender, EventArgs e)
@@ -290,10 +293,18 @@ namespace POS.Forms
                 additem.ShowDialog();
             }
         }
-
+        void setAutoComplete()
+        {
+            search.AutoCompleteCustomSource.Clear();
+            using (var p = new POSEntities())
+            {
+                search.AutoCompleteCustomSource.AddRange(p.Products.Where(x => x.Item.Type == 0).Select(x => x.Item.Name).ToArray());
+            }
+        }
         private void Additem_OnSave(object sender, EventArgs e)
         {
             SetTable();
+            setAutoComplete();
         }
 
         private void supplier_SelectedIndexChanged(object sender, EventArgs e)
@@ -321,8 +332,11 @@ namespace POS.Forms
                 }
                 if (items.Count() == 0)
                 {
-                    MessageBox.Show("Entry not found.");
-                    return;
+                    if (MessageBox.Show("Would you like to Create an item?","Entry not found.", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.OK)
+                    {
+                        createBtn.PerformClick();
+                        return;
+                    }
                 }
                 foreach (var i in items)
                 {
