@@ -69,11 +69,11 @@ namespace POS.UserControls
 
         protected virtual void firstBtn_Click(object sender, EventArgs e)
         {
-            //using (var sell = new MakeSale())
-            //{
-            //    sell.OnSave += OnInventoryChangedCallback;
-            //    sell.ShowDialog();
-            //}
+            using (var sell = new MakeSale())
+            {
+                sell.OnSave += OnInventoryChangedCallback;
+                sell.ShowDialog();
+            }
         }
 
         protected virtual void secondBtn_Click(object sender, EventArgs e)
