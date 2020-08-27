@@ -41,7 +41,7 @@ namespace POS.Forms
 
                     Console.WriteLine(i.SupplierId);
 
-                    invTable.Rows.Add(counter, i.SerialNumber, i.Quantity == 0?"Infinite":i.Quantity.ToString(), (i.Supplier?.Name) ?? "NOT SPECIFIED");
+                    invTable.Rows.Add(counter, i.SerialNumber, i.Quantity == 0 ? "Infinite" : i.Quantity.ToString(), (i.Supplier?.Name) ?? "NOT SPECIFIED");
                 }
             }
         }
@@ -93,7 +93,6 @@ namespace POS.Forms
                     var t = p.Products.FirstOrDefault(x => x.SerialNumber == target.SerialNumber);
                     t.SerialNumber = dgt.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString();
                     p.SaveChanges();
-                    //OnSave?.Invoke(this, null);
                     MessageBox.Show("Serial successfully updated");
                 }
             }
