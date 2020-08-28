@@ -7,21 +7,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using POS.Misc;
 
 namespace POS.UserControls
 {
     public partial class SearchControl : UserControl
     {
-        private bool SearchDone = false;
+        public bool SearchDone = false;
         /// <summary>
         /// triggers upon hitting enter or pressing search Button;
         /// </summary>
-        public event EventHandler<string> OnSearch;
+        public event EventHandler<SearchEventArgs> OnSearch;
         /// <summary>
         /// triggers when search bar text become empty and a search has been done
         /// </summary>
         public event EventHandler OnTextEmpty;
-
+        public string SearchText
+        {
+            get
+            {
+                return searchText.Text;
+            }
+        }
         public SearchControl()
         {
             InitializeComponent();
@@ -41,8 +48,8 @@ namespace POS.UserControls
             if (searchText.Text == string.Empty)
                 return;
 
-            SearchDone = true;
-            OnSearch?.Invoke(this, searchText.Text);
+           // SearchDone = true;
+            OnSearch?.Invoke(this, new SearchEventArgs(this));
 
         }
 

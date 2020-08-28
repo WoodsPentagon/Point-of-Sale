@@ -562,7 +562,7 @@
             this.searchControl.Name = "searchControl";
             this.searchControl.Size = new System.Drawing.Size(466, 28);
             this.searchControl.TabIndex = 10;
-            this.searchControl.OnSearch += new System.EventHandler<string>(this.searchControl_OnSearch);
+            this.searchControl.OnSearch += new System.EventHandler<Misc.SearchEventArgs>(this.searchControl_OnSearch);
             this.searchControl.OnTextEmpty += new System.EventHandler(this.searchControl_OnTextEmpty);
             // 
             // StockinForm

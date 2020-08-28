@@ -401,15 +401,15 @@ namespace POS.Forms
             }
         }
 
-        private void searchControl_OnSearch(object sender, string e)
+        private void searchControl_OnSearch(object sender, Misc.SearchEventArgs e)
         {
 
             using (var p = new POSEntities())
             {
-                var items = p.Items.Where(x => x.Barcode == e && x.Type == 0);
+                var items = p.Items.Where(x => x.Barcode == e.Text && x.Type == 0);
                 if (items.Count() == 0)
                 {
-                    items = p.Items.Where(x => x.Name.Contains(e) && x.Type == 0);
+                    items = p.Items.Where(x => x.Name.Contains(e.Text) && x.Type == 0);
                 }
                 if (items.Count() == 0)
                 {
@@ -419,7 +419,7 @@ namespace POS.Forms
                     }
                     return;
                 }
-
+                e.SearchFound = true;
                 itemsTable.Rows.Clear();
                 foreach (var i in items)
                 {
@@ -431,6 +431,7 @@ namespace POS.Forms
 
         private void searchControl_OnTextEmpty(object sender, EventArgs e)
         {
+            Console.WriteLine("set");
             SetTable();
         }
     }

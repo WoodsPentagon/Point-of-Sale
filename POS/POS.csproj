@@ -180,6 +180,7 @@
     <Compile Include="Misc\Enums.cs" />
     <Compile Include="Misc\Helper.cs" />
     <Compile Include="Misc\ImageDatabaseConverter.cs" />
+    <Compile Include="Misc\SearchEventArgs.cs" />
     <Compile Include="Misc\UserManager.cs" />
     <Compile Include="POSModel.Context.cs">
       <AutoGen>True</AutoGen>
